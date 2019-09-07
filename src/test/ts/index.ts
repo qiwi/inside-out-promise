@@ -1,5 +1,5 @@
-import { factory, InsideOutPromise } from '../../main/ts'
-import { TPromiseState } from '../../main/ts/interface'
+import {factory, InsideOutPromise} from '../../main/ts'
+import {TPromiseState} from '../../main/ts/interface'
 import * as Bluebird from 'bluebird'
 
 describe('factory', () => {
@@ -34,9 +34,10 @@ describe('InsideOutPromise', () => {
 
     it('invokes executor if passed', () => {
       const fn = jest.fn()
-      new InsideOutPromise(fn)
+      const p = new InsideOutPromise(fn)
 
       expect(fn).toHaveBeenNthCalledWith(1, expect.any(Function), expect.any(Function))
+      expect(p).toBeInstanceOf(InsideOutPromise)
     })
   })
   describe('proto', () => {
@@ -56,7 +57,7 @@ describe('InsideOutPromise', () => {
       expect(n).not.toBe(p.promise)
     })
 
-    it('#resolve resolves the promise and returns its ref as a result', async () => {
+    it('#resolve resolves the promise and returns its ref as a result', async() => {
       const data = 'foo'
       const p = new InsideOutPromise()
       const n = p.resolve(data)
@@ -76,7 +77,8 @@ describe('InsideOutPromise', () => {
       const n = p.reject(reason)
       try {
         await p.promise
-      } catch (err) {
+      }
+      catch (err) {
         expect(err).toBe(reason)
         expect(n).toBe(p.promise)
         expect(p.state).toBe(TPromiseState.REJECTED)

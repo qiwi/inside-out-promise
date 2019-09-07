@@ -1,8 +1,7 @@
 import {
   IPromise,
-  TPromiseExecutor
+  TPromiseExecutor,
 } from '@qiwi/substrate-types/lib/es5/IPromise'
-
 
 export enum TPromiseState {
   PENDING = 'Pending',
@@ -22,7 +21,7 @@ export interface TInsideOutPromise<TValue = any, TReason = any> extends IPromise
 
 export {
   IPromise,
-  TPromiseExecutor
+  TPromiseExecutor,
 }
 
 export interface IPromiseFactory {
