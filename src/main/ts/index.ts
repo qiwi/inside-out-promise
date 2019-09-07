@@ -6,6 +6,8 @@ import {
   TPromiseState,
 } from './interface'
 
+export * from './interface'
+
 export const factory: IPromiseFactory = (executor?: TPromiseExecutor): InsideOutPromise<any, any> => {
   return new InsideOutPromise(executor)
 }
@@ -25,22 +27,25 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
     let _resolve: Function
     let _reject: Function
 
-    const finalize = (handler: Function, state: TPromiseState) => (data?: any): IPromise  => {
-      if (this.isPending()) {
-        this.state = state
-        handler(data)
-      }
+    const finalize = (handler: Function) => (data?: any): IPromise  => {
+      handler(data)
 
       return this.promise
     }
 
-    this.resolve = finalize((data?: any) => _resolve(data), TPromiseState.FULFILLED)
-    this.reject = finalize((err?: any) => _reject(err), TPromiseState.REJECTED)
+    this.resolve = finalize((data?: any) => _resolve(data))
+    this.reject = finalize((err?: any) => _reject(err))
     this.promise = new InsideOutPromise.Promise((resolve, reject) => {
       _resolve = resolve
       _reject = reject
 
       executor && executor(resolve, reject)
+    }).then(v => {
+      this.state = TPromiseState.FULFILLED
+      return v
+    }).catch(e => {
+      this.state = TPromiseState.REJECTED
+      throw e
     })
   }
 
