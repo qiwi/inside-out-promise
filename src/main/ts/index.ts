@@ -16,11 +16,13 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
     let _reject: Function
     let done: boolean = false
 
-    const finalize = (handler: Function) => (data?: any) => {
+    const finalize = (handler: Function) => (data?: any): IPromise  => {
       if (!done) {
         done = true
-        return handler(data)
+        handler(data)
       }
+
+      return this.promise
     }
 
     this.resolve = finalize((data?: any) => _resolve(data))
