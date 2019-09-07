@@ -1,5 +1,5 @@
 # inside-out-promise
-Produces extended Promises with attached chainable resolvers
+Produces Promises with chainable resolvers and observable state.
 
 ## Install
 ```bash

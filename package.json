@@ -2,7 +2,7 @@
   "name": "inside-out-promise",
   "version": "1.0.0",
   "description": "Produces extended Promises with attached chainable resolvers",
-  "repository": "git@github.com:antongolub/inside-out-promise.git",
+  "repository": "git@github.com:qiwi/inside-out-promise.git",
   "author": "Anton Golub <mailbox@antongolub.ru>",
   "license": "MIT",
   "private": false,
