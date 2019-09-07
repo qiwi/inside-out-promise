@@ -8,15 +8,13 @@ yarn add inside-out-promise
 ```
 
 ## Features
-* Exposed `resolve` and `reject` methods
-* Chainable API
+* Exposed chainable `resolve` and `reject` methods
 * Configurable Promise implementation
-* `new` operator support
 * Typings for both worlds: Typescript and Flowtype
 
 ## Usage
 ```javascript
-import factory from 'inside-out-promise'
+import {factory} from 'inside-out-promise'
 
 const promise = factory()
 promise.then((data) => {
@@ -25,7 +23,11 @@ promise.then((data) => {
 
 
 const data = await fetch({...})
-promise.resolve(data) 
+promise.resolve(data)
+
+// Or the same in OOP style
+import {InsideOutPromise} from 'inside-out-promise'
+const p = new InsideOutPromise()
 ```
 
 #### Extentions

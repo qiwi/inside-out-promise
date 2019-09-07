@@ -2,9 +2,17 @@ import {
   TInsideOutPromise,
   TPromiseExecutor,
   IPromise,
+  IPromiseFactory,
 } from './interface'
 
-export const factory = () => {}
+export const factory: IPromiseFactory = (executor?: TPromiseExecutor): InsideOutPromise<any, any> => {
+  return new InsideOutPromise(executor)
+}
+
+Object.defineProperty(factory, 'Promise', {
+  get() { return InsideOutPromise.Promise },
+  set(P) { InsideOutPromise.Promise = P }
+})
 
 export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TValue, TReason> {
   promise: IPromise
@@ -27,7 +35,7 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
 
     this.resolve = finalize((data?: any) => _resolve(data))
     this.reject = finalize((err?: any) => _reject(err))
-    this.promise = new Promise((resolve, reject) => {
+    this.promise = new InsideOutPromise.Promise((resolve, reject) => {
       _resolve = resolve
       _reject = reject
 
@@ -40,4 +48,6 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
   catch(onReject: (reason: TReason) => any): IPromise {
     return this.promise.catch(onReject)
   }
+
+  static Promise = Promise
 }

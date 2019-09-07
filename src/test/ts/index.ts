@@ -1,8 +1,23 @@
 import { factory, InsideOutPromise } from '../../main/ts'
+import * as Bluebird from 'bluebird'
 
 describe('factory', () => {
-  it('is a function', () => {
+  afterAll(() => InsideOutPromise.Promise = Promise)
+
+  it('returns proper instance', () => {
+    const p = factory()
+
     expect(factory).toEqual(expect.any(Function))
+    expect(p).toBeInstanceOf(InsideOutPromise)
+  })
+
+  it('supports promise constructor configuration', () => {
+    factory.Promise = Bluebird
+
+    const p = factory()
+
+    expect(p.promise).toBeInstanceOf(Bluebird)
+    expect(InsideOutPromise.Promise).toBe(Bluebird)
   })
 })
 
@@ -63,5 +78,9 @@ describe('InsideOutPromise', () => {
       }
     })
   })
-  // describe('static', () => {})
+  describe('static', () => {
+    it('Promise refs to the native Promise by default', () => {
+      expect(InsideOutPromise.Promise).toBe(Promise)
+    })
+  })
 })
