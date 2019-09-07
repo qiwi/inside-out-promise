@@ -1,4 +1,5 @@
 import { factory, InsideOutPromise } from '../../main/ts'
+import { TPromiseState } from '../../main/ts/interface'
 import * as Bluebird from 'bluebird'
 
 describe('factory', () => {
@@ -12,8 +13,9 @@ describe('factory', () => {
   })
 
   it('supports promise constructor configuration', () => {
-    factory.Promise = Bluebird
+    expect(factory.Promise).toBe(Promise)
 
+    factory.Promise = Bluebird
     const p = factory()
 
     expect(p.promise).toBeInstanceOf(Bluebird)
@@ -60,6 +62,10 @@ describe('InsideOutPromise', () => {
       const n = p.resolve(data)
       const resolved = await p.promise
 
+      expect(p.state).toBe(TPromiseState.FULFILLED)
+      expect(p.isPending()).toBeFalsy()
+      expect(p.isRejected()).toBeFalsy()
+      expect(p.isFulfilled()).toBeTruthy()
       expect(n).toBe(p.promise)
       expect(resolved).toBe(data)
     })
@@ -73,9 +79,22 @@ describe('InsideOutPromise', () => {
       } catch (err) {
         expect(err).toBe(reason)
         expect(n).toBe(p.promise)
+        expect(p.state).toBe(TPromiseState.REJECTED)
+        expect(p.isPending()).toBeFalsy()
+        expect(p.isRejected()).toBeTruthy()
+        expect(p.isFulfilled()).toBeFalsy()
 
         done()
       }
+    })
+
+    it('exposes promise state', () => {
+      const p = new InsideOutPromise()
+
+      expect(p.state).toBe(TPromiseState.PENDING)
+      expect(p.isPending()).toBeTruthy()
+      expect(p.isRejected()).toBeFalsy()
+      expect(p.isFulfilled()).toBeFalsy()
     })
   })
   describe('static', () => {

@@ -4,10 +4,20 @@ import {
 } from '@qiwi/substrate-types/lib/es5/IPromise'
 
 
+export enum TPromiseState {
+  PENDING = 'Pending',
+  FULFILLED = 'Fulfilled',
+  REJECTED = 'Rejected',
+}
+
 export interface TInsideOutPromise<TValue = any, TReason = any> extends IPromise<TValue, TReason> {
   resolve: (value: TValue) => IPromise,
   reject: (reason: TReason) => IPromise,
-  promise: IPromise
+  promise: IPromise,
+  state: TPromiseState,
+  isRejected: () => boolean,
+  isFulfilled: () => boolean,
+  isPending: () => boolean,
 }
 
 export {

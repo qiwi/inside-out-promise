@@ -8,7 +8,8 @@ yarn add inside-out-promise
 ```
 
 ## Features
-* Exposed chainable `resolve` and `reject` methods
+* Chainable `resolve` and `reject` methods
+* Exposed promise state
 * Configurable Promise implementation
 * Typings for both worlds: Typescript and Flowtype
 
@@ -30,15 +31,28 @@ import {InsideOutPromise} from 'inside-out-promise'
 const p = new InsideOutPromise()
 ```
 
-#### Extentions
+#### Resolvers
 ```javascript
-const promise1 = factory()
-const promise2 = factory()
+const promise = factory()
 
-promise1.resolve('foo')
-promise2.reject(new Error('bar'))
-
+promise.resolve('foo')
+promise.reject(new Error('bar'))
 ```
+
+#### State
+Promise [state](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise) field may take values: `Pending`, `Fulfilled` and `Rejected` 
+```javascript:
+const promise = factory()
+promise.state // 'Pending'
+
+promise.resolve()
+promise.state // 'Fulfilled'
+```
+
+There're also 3 helper methods:
+* `isPending()`
+* `isRejected()`
+* `isFulfilled()`
 
 #### Chains
 ```javascript
@@ -51,11 +65,11 @@ factory().reject(new Error()).catch(error => {
 })
 ```
 
-#### new ExtendedPromise()
+#### InsideOutPromise
 ```javascript
-import ExtendedPromise from 'inside-out-promise'
+import InsideOutPromise from 'inside-out-promise'
 
-const promise = new ExtendedPromise((resolve, reject) => {
+const promise = new InsideOutPromise((resolve, reject) => {
   // Legacy handler flow is still works
   // ...
 })
@@ -71,4 +85,3 @@ import * as Bluebird from 'bluebird'
 
 factory.Promise = Bluebird // Native `Promise` by default
 ```
-

@@ -3,6 +3,7 @@ import {
   TPromiseExecutor,
   IPromise,
   IPromiseFactory,
+  TPromiseState,
 } from './interface'
 
 export const factory: IPromiseFactory = (executor?: TPromiseExecutor): InsideOutPromise<any, any> => {
@@ -18,23 +19,23 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
   promise: IPromise
   resolve: (value: TValue) => IPromise
   reject: (reason: TReason) => IPromise
+  state: TPromiseState = TPromiseState.PENDING
 
   constructor(executor?: TPromiseExecutor<TValue>) {
     let _resolve: Function
     let _reject: Function
-    let done: boolean = false
 
-    const finalize = (handler: Function) => (data?: any): IPromise  => {
-      if (!done) {
-        done = true
+    const finalize = (handler: Function, state: TPromiseState) => (data?: any): IPromise  => {
+      if (this.isPending()) {
+        this.state = state
         handler(data)
       }
 
       return this.promise
     }
 
-    this.resolve = finalize((data?: any) => _resolve(data))
-    this.reject = finalize((err?: any) => _reject(err))
+    this.resolve = finalize((data?: any) => _resolve(data), TPromiseState.FULFILLED)
+    this.reject = finalize((err?: any) => _reject(err), TPromiseState.REJECTED)
     this.promise = new InsideOutPromise.Promise((resolve, reject) => {
       _resolve = resolve
       _reject = reject
@@ -42,11 +43,25 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
       executor && executor(resolve, reject)
     })
   }
+
   then(onSuccess?: (value: TValue) => any, onReject?: (reason: TReason) => any): IPromise {
     return this.promise.then(onSuccess, onReject)
   }
+
   catch(onReject: (reason: TReason) => any): IPromise {
     return this.promise.catch(onReject)
+  }
+
+  isPending(): boolean {
+    return this.state === TPromiseState.PENDING
+  }
+
+  isFulfilled(): boolean {
+    return this.state === TPromiseState.FULFILLED
+  }
+
+  isRejected(): boolean {
+    return this.state === TPromiseState.REJECTED
   }
 
   static Promise = Promise
