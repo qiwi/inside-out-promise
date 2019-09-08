@@ -7,7 +7,7 @@ import {
   TPromiseFactoryOpts,
   TNormalizedPromiseFactoryOpts,
 } from './interface'
-import { noop, alias } from './util'
+import {noop, alias} from './util'
 
 export * from './interface'
 
@@ -72,6 +72,12 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
 
   catch(onReject: (reason: TReason) => any): IPromise {
     return this.promise.catch(onReject)
+  }
+
+  finally(handler: () => any) {
+    return this.promise.finally
+      ? this.promise.finally(handler)
+      : this.promise.then(handler).catch(handler)
   }
 
   isPending(): boolean {

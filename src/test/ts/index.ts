@@ -122,6 +122,45 @@ describe('InsideOutPromise', () => {
       expect(p.isFulfilled()).toBeFalsy()
       expect(p.isResolved()).toBeFalsy()
     })
+
+    describe('#finally', () => {
+      it('uses this.promise.finally if exists', async() => {
+        const p = new InsideOutPromise()
+        const f = p.finally(() => {
+          foo = 'baz'
+        })
+        let foo = 'bar'
+
+        setTimeout(() => p.resolve(null), 5)
+
+        await p.promise
+
+        expect(f).toBeInstanceOf(Promise)
+        expect(foo).toBe('baz')
+        expect(p.result).toBeNull()
+      })
+
+      it('relies on then(), catch() otherwise', async() => {
+        const p = new InsideOutPromise()
+        // @ts-ignore
+        p.promise.finally = null
+
+        let foo = 'bar'
+
+        const f = p.finally(() => {
+          foo = 'baz'
+        })
+
+        setTimeout(() => p.resolve(null), 5)
+
+        await p.promise
+
+        expect(f).toBeInstanceOf(Promise)
+        expect(foo).toBe('baz')
+        expect(p.result).toBeNull()
+      })
+    })
+
   })
   describe('static', () => {
     it('Promise refs to the native Promise by default', () => {
@@ -129,16 +168,16 @@ describe('InsideOutPromise', () => {
     })
 
     it('#normalizeOpts returns TNormalizedPromiseFactoryOpts', () => {
-      const executor = () => {}
+      const executor = () => { /* noop */ }
 
       expect(InsideOutPromise.normalizeOpts()).toEqual({
         Promise,
-        executor: noop
+        executor: noop,
       })
 
       expect(InsideOutPromise.normalizeOpts(executor, {Promise: Bluebird})).toEqual({
         Promise: Bluebird,
-        executor
+        executor,
       })
     })
   })

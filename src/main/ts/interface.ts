@@ -13,6 +13,7 @@ export interface TInsideOutPromise<TValue = any, TReason = any> extends IPromise
   promise: IPromise,
   resolve: (value: TValue) => IPromise,
   reject: (reason: TReason) => IPromise,
+  finally: (handler: () => any) => IPromise
 
   state: TPromiseState,
   status: TPromiseState,
