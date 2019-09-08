@@ -78,19 +78,37 @@
 			<section class="tsd-panel">
 				<h3 class="tsd-before-signature">Callable</h3>
 				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>executor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">TPromiseExecutor</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>executor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">TPromiseExecutor</span>, opts<span class="tsd-signature-symbol">?: </span><a href="../modules/_interface_.html#tpromisefactoryopts" class="tsd-signature-type">TPromiseFactoryOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>opts<span class="tsd-signature-symbol">?: </span><a href="../modules/_interface_.html#tpromisefactoryopts" class="tsd-signature-type">TPromiseFactoryOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/bb13565/src/main/ts/interface.ts#L27">interface.ts:27</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/0a174bb/src/main/ts/interface.ts#L45">interface.ts:45</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> executor: <span class="tsd-signature-type">TPromiseExecutor</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> opts: <a href="../modules/_interface_.html#tpromisefactoryopts" class="tsd-signature-type">TPromiseFactoryOpts</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/0a174bb/src/main/ts/interface.ts#L46">interface.ts:46</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> opts: <a href="../modules/_interface_.html#tpromisefactoryopts" class="tsd-signature-type">TPromiseFactoryOpts</a></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -118,7 +136,7 @@
 					<div class="tsd-signature tsd-kind-icon">Promise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/bb13565/src/main/ts/interface.ts#L29">interface.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/0a174bb/src/main/ts/interface.ts#L48">interface.ts:48</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -135,6 +153,9 @@
 					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/_interface_.html">"interface"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_util_.html">"util"</a>
 					</li>
 				</ul>
 			</nav>
@@ -157,6 +178,12 @@
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_interface_.tinsideoutpromise.html" class="tsd-kind-icon">TInside<wbr>Out<wbr>Promise</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_interface_.html#tnormalizedpromisefactoryopts" class="tsd-kind-icon">TNormalized<wbr>Promise<wbr>Factory<wbr>Opts</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_interface_.html#tpromisefactoryopts" class="tsd-kind-icon">TPromise<wbr>Factory<wbr>Opts</a>
 					</li>
 				</ul>
 			</nav>
