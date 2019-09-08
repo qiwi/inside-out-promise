@@ -1,5 +1,5 @@
 # inside-out-promise
-Produces Promises with chainable resolvers and observable state.
+Produces promises with chainable resolvers and observable state.
 
 [![Build Status](https://travis-ci.com/qiwi/inside-out-promise.svg?branch=master)](https://travis-ci.com/qiwi/inside-out-promise)
 [![npm (tag)](https://img.shields.io/npm/v/inside-out-promise/latest.svg)](https://www.npmjs.com/package/inside-out-promise)
@@ -25,26 +25,40 @@ yarn add inside-out-promise
 ```javascript
 import {factory} from 'inside-out-promise'
 
-const promise = factory()
-promise.then((data) => {
+const promise = factory() // produces a promise
+promise.then((data) => {  // standard `thenable` iface
   doSomething(data)
 })
 
-
 const data = await fetch({...})
-promise.resolve(data)
+promise.resolve(data)     // internal resolver is exposed as public promise field
+promise.status            // 'Fulfilled'
+promise.isPending()       // false
+promise.isFulfilled()     // true
 
 // Or the same in OOP style
 import {InsideOutPromise} from 'inside-out-promise'
 const p = new InsideOutPromise()
 ```
-
+## API
 #### Resolvers
+Both `executor` args — `resolve` and `reject` — are available as public methods:
 ```javascript
 const promise = factory()
 
 promise.resolve('foo')
 promise.reject(new Error('bar'))
+```
+
+#### Chains
+```javascript
+factory().resolve('value').then(data => {
+  // here's the value: data === 'value'
+})
+
+factory().reject(new Error()).catch(error => {
+  // the error goes here
+})
 ```
 
 #### State
@@ -62,23 +76,14 @@ There're also 3 helper methods:
 * `isRejected()`
 * `isFulfilled()`
 
-#### Chains
-```javascript
-factory().resolve('value').then(data => {
-  // here's the value: data === 'value'
-})
 
-factory().reject(new Error()).catch(error => {
-  // the error goes here
-})
-```
 
 #### InsideOutPromise
 ```javascript
 import InsideOutPromise from 'inside-out-promise'
 
 const promise = new InsideOutPromise((resolve, reject) => {
-  // Legacy handler flow is still works
+  // Legacy executor flow is still supported
   // ...
 })
 
@@ -86,7 +91,7 @@ promise.resolve('foo')
 promise.then(data => console.log(data)) // It's `foo`
 ```
 
-#### Configuration
+## Configuration
 ```javascript
 import factory from 'inside-out-promise'
 import * as Bluebird from 'bluebird'
