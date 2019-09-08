@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/qiwi/inside-out-promise/compare/v1.1.0...v1.2.0) (2019-09-08)
+
+
+### Features
+
+* **factory:** modify proto chain on Promise impl change ([13e79e9](https://github.com/qiwi/inside-out-promise/commit/13e79e9))
+
 # [1.1.0](https://github.com/qiwi/inside-out-promise/compare/v1.0.0...v1.1.0) (2019-09-08)
 
 
