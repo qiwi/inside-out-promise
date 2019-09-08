@@ -4,12 +4,15 @@ import {
   IPromise,
   IPromiseFactory,
   TPromiseState,
+  TPromiseFactoryOpts,
+  TNormalizedPromiseFactoryOpts,
 } from './interface'
+import { noop, alias } from './util'
 
 export * from './interface'
 
-export const factory: IPromiseFactory = (executor?: TPromiseExecutor): InsideOutPromise<any, any> => {
-  return new InsideOutPromise(executor)
+export const factory: IPromiseFactory = (executor?: TPromiseExecutor | TPromiseFactoryOpts, opts?: TPromiseFactoryOpts): InsideOutPromise<any, any> => {
+  return new InsideOutPromise(executor, opts)
 }
 
 Object.defineProperty(factory, 'Promise', {
@@ -32,45 +35,35 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
   result: any
   value: any
 
-  constructor(executor?: TPromiseExecutor<TValue>) {
+  constructor(executor?: TPromiseExecutor<TValue> | TPromiseFactoryOpts, opts?: TPromiseFactoryOpts) {
     let _resolve: Function
     let _reject: Function
-
-    const finalize = (handler: Function) => (data?: any): IPromise => {
+    const _opts = InsideOutPromise.normalizeOpts(executor, opts)
+    const P: PromiseConstructor = _opts.Promise
+    const exec: TPromiseExecutor = _opts.executor
+    const chain = (handler: Function) => (data?: any): IPromise => {
       handler(data)
-
       return this.promise
     }
 
-    this.resolve = finalize((data?: any) => _resolve(data))
-    this.reject = finalize((err?: any) => _reject(err))
-    this.promise = new InsideOutPromise.Promise((resolve, reject) => {
+    this.resolve = chain((data?: any) => _resolve(data))
+    this.reject = chain((err?: any) => _reject(err))
+    this.promise = new P((resolve, reject) => {
       _resolve = resolve
       _reject = reject
-
-      executor && executor(resolve, reject)
+      exec(resolve, reject)
     }).then(v => {
       this.result = v
       this.state = TPromiseState.FULFILLED
       return v
-    }).catch(e => {
+    }, e => {
       this.result = e
       this.state = TPromiseState.REJECTED
       throw e
     })
 
-    Object.defineProperties(this, {
-      status: {
-        get() {
-          return this.state
-        },
-      },
-      value: {
-        get() {
-          return this.result
-        },
-      },
-    })
+    alias(this, 'state', 'status')
+    alias(this, 'result', 'value')
   }
 
   then(onSuccess?: (value: TValue) => any, onReject?: (reason: TReason) => any): IPromise {
@@ -95,6 +88,21 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
 
   isResolved(): boolean {
     return !this.isPending()
+  }
+
+  static normalizeOpts(executor?: TPromiseExecutor | TPromiseFactoryOpts, opts: TPromiseFactoryOpts = {}): TNormalizedPromiseFactoryOpts {
+    const mixin = typeof executor === 'function'
+      ? {
+        ...opts,
+        executor,
+      }
+      : executor || opts
+
+    return {
+      Promise: InsideOutPromise.Promise,
+      executor: noop,
+      ...mixin,
+    }
   }
 
   static Promise = Promise

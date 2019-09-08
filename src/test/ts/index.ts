@@ -1,6 +1,6 @@
-import {factory, InsideOutPromise} from '../../main/ts'
-import {TPromiseState} from '../../main/ts/interface'
+import {factory, InsideOutPromise, TPromiseState} from '../../main/ts'
 import * as Bluebird from 'bluebird'
+import {noop} from '../../main/ts/util'
 
 describe('factory', () => {
   afterAll(() => InsideOutPromise.Promise = Promise)
@@ -12,7 +12,19 @@ describe('factory', () => {
     expect(p).toBeInstanceOf(InsideOutPromise)
   })
 
-  it('supports promise constructor configuration', () => {
+  it('handles options argument', () => {
+    expect(factory.Promise).toBe(Promise)
+    const opts = {
+      Promise: Bluebird,
+      executor: jest.fn(),
+    }
+    const p = factory(opts)
+
+    expect(p.promise).toBeInstanceOf(Bluebird)
+    expect(opts.executor).toHaveBeenNthCalledWith(1, expect.any(Function), expect.any(Function))
+  })
+
+  it('allows override default Promise impl', () => {
     expect(factory.Promise).toBe(Promise)
 
     factory.Promise = Bluebird
@@ -114,6 +126,20 @@ describe('InsideOutPromise', () => {
   describe('static', () => {
     it('Promise refs to the native Promise by default', () => {
       expect(InsideOutPromise.Promise).toBe(Promise)
+    })
+
+    it('#normalizeOpts returns TNormalizedPromiseFactoryOpts', () => {
+      const executor = () => {}
+
+      expect(InsideOutPromise.normalizeOpts()).toEqual({
+        Promise,
+        executor: noop
+      })
+
+      expect(InsideOutPromise.normalizeOpts(executor, {Promise: Bluebird})).toEqual({
+        Promise: Bluebird,
+        executor
+      })
     })
   })
 })

@@ -31,7 +31,18 @@ export {
   TPromiseExecutor,
 }
 
+export type TPromiseFactoryOpts = {
+  executor?: TPromiseExecutor,
+  Promise?: any
+}
+
+export type TNormalizedPromiseFactoryOpts = {
+  executor: TPromiseExecutor,
+  Promise: any
+}
+
 export interface IPromiseFactory {
-  (executor?: TPromiseExecutor): TInsideOutPromise<any, any>
+  (executor?: TPromiseExecutor, opts?: TPromiseFactoryOpts): TInsideOutPromise<any, any>,
+  (opts?: TPromiseFactoryOpts): TInsideOutPromise<any, any>,
   Promise?: any
 }
