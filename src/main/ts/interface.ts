@@ -14,6 +14,7 @@ export interface TInsideOutPromise<TValue = any, TReason = any> extends IPromise
   reject: (reason: TReason) => IPromise,
   promise: IPromise,
   state: TPromiseState,
+  result: any,
   isRejected: () => boolean,
   isFulfilled: () => boolean,
   isPending: () => boolean,

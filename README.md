@@ -17,7 +17,7 @@ yarn add inside-out-promise
 
 ## Features
 * Chainable `resolve` and `reject` methods
-* Exposed promise state
+* Exposed promise `state` and `result`
 * Configurable Promise implementation
 * Typings for both worlds: Typescript and Flowtype
 
@@ -32,6 +32,7 @@ promise.then((data) => {  // standard `thenable` iface
 
 const data = await fetch({...})
 promise.resolve(data)     // internal resolver is exposed as public promise field
+promise.result            // data ref
 promise.status            // 'Fulfilled'
 promise.isPending()       // false
 promise.isFulfilled()     // true
@@ -75,8 +76,6 @@ There're also 3 helper methods:
 * `isPending()`
 * `isRejected()`
 * `isFulfilled()`
-
-
 
 #### InsideOutPromise
 ```javascript

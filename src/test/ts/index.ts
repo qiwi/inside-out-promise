@@ -64,6 +64,7 @@ describe('InsideOutPromise', () => {
       const resolved = await p.promise
 
       expect(p.state).toBe(TPromiseState.FULFILLED)
+      expect(p.result).toBe(data)
       expect(p.isPending()).toBeFalsy()
       expect(p.isRejected()).toBeFalsy()
       expect(p.isFulfilled()).toBeTruthy()
@@ -82,6 +83,7 @@ describe('InsideOutPromise', () => {
         expect(err).toBe(reason)
         expect(n).toBe(p.promise)
         expect(p.state).toBe(TPromiseState.REJECTED)
+        expect(p.result).toBe(reason)
         expect(p.isPending()).toBeFalsy()
         expect(p.isRejected()).toBeTruthy()
         expect(p.isFulfilled()).toBeFalsy()
@@ -94,6 +96,7 @@ describe('InsideOutPromise', () => {
       const p = new InsideOutPromise()
 
       expect(p.state).toBe(TPromiseState.PENDING)
+      expect(p.result).toBeUndefined()
       expect(p.isPending()).toBeTruthy()
       expect(p.isRejected()).toBeFalsy()
       expect(p.isFulfilled()).toBeFalsy()
