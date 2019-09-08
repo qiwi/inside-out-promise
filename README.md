@@ -38,6 +38,7 @@ promise.state             // 'Fulfilled'
 promise.status            // status alias: 'Fulfilled'
 promise.isPending()       // false
 promise.isFulfilled()     // true
+promise.isResolved()      // true
 
 // Or the same in OOP style
 import {InsideOutPromise} from 'inside-out-promise'
