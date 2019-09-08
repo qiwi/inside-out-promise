@@ -93,6 +93,10 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
     return this.state === TPromiseState.REJECTED
   }
 
+  isResolved(): boolean {
+    return !this.isPending()
+  }
+
   static Promise = Promise
 
 }

@@ -70,6 +70,7 @@ describe('InsideOutPromise', () => {
       expect(p.isPending()).toBeFalsy()
       expect(p.isRejected()).toBeFalsy()
       expect(p.isFulfilled()).toBeTruthy()
+      expect(p.isResolved()).toBeTruthy()
       expect(n).toBe(p.promise)
       expect(resolved).toBe(data)
     })
@@ -91,6 +92,7 @@ describe('InsideOutPromise', () => {
         expect(p.isPending()).toBeFalsy()
         expect(p.isRejected()).toBeTruthy()
         expect(p.isFulfilled()).toBeFalsy()
+        expect(p.isResolved()).toBeTruthy()
 
         done()
       }
@@ -106,6 +108,7 @@ describe('InsideOutPromise', () => {
       expect(p.isPending()).toBeTruthy()
       expect(p.isRejected()).toBeFalsy()
       expect(p.isFulfilled()).toBeFalsy()
+      expect(p.isResolved()).toBeFalsy()
     })
   })
   describe('static', () => {
