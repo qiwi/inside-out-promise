@@ -99,3 +99,7 @@ import * as Bluebird from 'bluebird'
 
 factory.Promise = Bluebird // Native `Promise` by default
 ```
+
+## Refs
+* [Fulfill vs resolve](https://stackoverflow.com/questions/35398365/js-promises-fulfill-vs-resolve)
+* [States and fates](https://github.com/domenic/promises-unwrapping/blob/master/docs/states-and-fates.md)
