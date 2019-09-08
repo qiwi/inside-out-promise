@@ -22,7 +22,7 @@
     "flow-typed"
   ],
   "scripts": {
-    "jest": "jest -w 2 --config=jest.config.json",
+    "jest": "jest -w 1 --config=jest.config.json",
     "lint": "tslint -p tsconfig.test.json src/**/*.ts",
     "lint:fix": "yarn lint --fix",
     "test": "yarn lint && yarn jest",
@@ -78,11 +78,14 @@
     "typescript-eslint-parser": "^22.0.0"
   },
   "keywords": [
+    "promise",
+    "extended promise",
     "inside-out-promise",
     "InsideOutPromise",
     "promise status",
     "interted promise",
-    "observable promise"
+    "observable promise",
+    "esimorp"
   ],
   "release": {
     "branch": "master",

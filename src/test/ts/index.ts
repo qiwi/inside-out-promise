@@ -10,6 +10,7 @@ describe('factory', () => {
 
     expect(factory).toEqual(expect.any(Function))
     expect(p).toBeInstanceOf(InsideOutPromise)
+    expect(p).toBeInstanceOf(Promise)
   })
 
   it('handles options argument', () => {
@@ -31,6 +32,7 @@ describe('factory', () => {
     const p = factory()
 
     expect(p.promise).toBeInstanceOf(Bluebird)
+    expect(p).toBeInstanceOf(Bluebird)
     expect(InsideOutPromise.Promise).toBe(Bluebird)
   })
 })

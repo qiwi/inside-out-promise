@@ -20,6 +20,7 @@ Object.defineProperty(factory, 'Promise', {
     return InsideOutPromise.Promise
   },
   set(P) {
+    Object.setPrototypeOf(InsideOutPromise.prototype, P.prototype)
     InsideOutPromise.Promise = P
   },
 })
@@ -114,3 +115,6 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
   static Promise = Promise
 
 }
+
+// NOTE proto chaining
+factory.Promise = Promise
