@@ -27,7 +27,10 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
   resolve: (value: TValue) => IPromise
   reject: (reason: TReason) => IPromise
   state: TPromiseState = TPromiseState.PENDING
+  // @ts-ignore it's a getter
+  status: TPromiseState
   result: any
+  value: any
 
   constructor(executor?: TPromiseExecutor<TValue>) {
     let _resolve: Function
@@ -54,6 +57,19 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
       this.result = e
       this.state = TPromiseState.REJECTED
       throw e
+    })
+
+    Object.defineProperties(this, {
+      status: {
+        get() {
+          return this.state
+        },
+      },
+      value: {
+        get() {
+          return this.result
+        },
+      },
     })
   }
 

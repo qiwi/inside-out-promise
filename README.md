@@ -33,7 +33,9 @@ promise.then((data) => {  // standard `thenable` iface
 const data = await fetch({...})
 promise.resolve(data)     // internal resolver is exposed as public promise field
 promise.result            // data ref
-promise.status            // 'Fulfilled'
+promise.value             // same data ref, result alias
+promise.state             // 'Fulfilled'
+promise.status            // status alias: 'Fulfilled'
 promise.isPending()       // false
 promise.isFulfilled()     // true
 

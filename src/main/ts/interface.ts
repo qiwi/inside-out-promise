@@ -10,11 +10,16 @@ export enum TPromiseState {
 }
 
 export interface TInsideOutPromise<TValue = any, TReason = any> extends IPromise<TValue, TReason> {
+  promise: IPromise,
   resolve: (value: TValue) => IPromise,
   reject: (reason: TReason) => IPromise,
-  promise: IPromise,
+
   state: TPromiseState,
+  status: TPromiseState,
+
   result: any,
+  value: any,
+
   isRejected: () => boolean,
   isFulfilled: () => boolean,
   isPending: () => boolean,
