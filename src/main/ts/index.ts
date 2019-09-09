@@ -5,6 +5,7 @@ import {
   TPromiseState,
   TPromiseFactoryOpts,
   TNormalizedPromiseFactoryOpts,
+  IPromise,
 } from './interface'
 import {noop, setProto} from './util'
 
@@ -38,35 +39,18 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
     const _opts = InsideOutPromise.normalizeOpts(executor, opts)
     const _P: PromiseConstructor = _opts.Promise
     const exec: TPromiseExecutor = _opts.executor
-    const fake = new _P((resolve, reject) => {
+
+    return InsideOutPromise.contextify(new _P((resolve, reject) => {
       _resolve = resolve
       _reject = reject
 
       exec(resolve, reject)
-    }).then(v => {
-      Object.assign(fake, {
-        result: v,
-        state: TPromiseState.FULFILLED,
-      })
-
-      return v
-    }, e => {
-      Object.assign(fake, {
-        result: e,
-        state: TPromiseState.REJECTED,
-      })
-
-      throw e
-    })
-
-    Object.assign(fake, {
+    }), {
       state: TPromiseState.PENDING,
       _P,
       _resolve,
-      _reject,
+      _reject
     })
-
-    return setProto(fake, this.constructor.prototype)
   }
 
   get promise(): InsideOutPromise<any, any> {
@@ -92,17 +76,17 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
   }
 
   then(onSuccess?: (value: TValue) => any, onReject?: (reason: TReason) => any): InsideOutPromise<any, any> {
-    return InsideOutPromise.contextify(this, 'then', onSuccess, onReject)
+    return InsideOutPromise.contextify(this, this, 'then', onSuccess, onReject)
   }
 
   catch(onReject: (reason: TReason) => any): InsideOutPromise<any, any> {
-    return InsideOutPromise.contextify(this, 'catch', onReject)
+    return InsideOutPromise.contextify(this, this, 'catch', onReject)
   }
 
   finally(handler: () => any): InsideOutPromise<any, any> {
     // @ts-ignore
     return this._P.prototype.finally
-      ? InsideOutPromise.contextify(this, 'finally', handler)
+      ? InsideOutPromise.contextify(this, this, 'finally', handler)
       : this.then(handler).catch(handler)
   }
 
@@ -122,8 +106,33 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
     return !this.isPending()
   }
 
-  private static contextify(ref: any, method: string, ...args: any[]): InsideOutPromise<any, any> {
-    return Object.assign(setProto(ref._P.prototype[method].call(ref, ...args), ref.constructor.prototype), ref)
+  private static contextify(ref: any, cxt: any, method?: string, ...args: any[]): InsideOutPromise<any, any> {
+    const promise = method
+      ? cxt._P.prototype[method].call(ref, ...args)
+      : ref
+
+    return Object.assign(setProto(this.observe(promise), this.prototype), cxt)
+  }
+
+  private static observe(promise: IPromise<any, any>): IPromise<any, any> {
+    const fake = promise
+      .then(v => {
+        Object.assign(fake, {
+          result: v,
+          state: TPromiseState.FULFILLED,
+        })
+
+        return v
+      }, e => {
+        Object.assign(fake, {
+          result: e,
+          state: TPromiseState.REJECTED,
+        })
+
+        throw e
+      })
+
+    return fake
   }
 
   static normalizeOpts(executor?: TPromiseExecutor | TPromiseFactoryOpts, opts: TPromiseFactoryOpts = {}): TNormalizedPromiseFactoryOpts {

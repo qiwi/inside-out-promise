@@ -173,8 +173,12 @@ describe('InsideOutPromise', () => {
     describe('then', () => {
       it('supports crazy chaining & inheritance', async() => {
         const p1 = new InsideOutPromise()
-        const p2 = p1.then(data => data)
-        const p3 = p2.then(data => data).resolve('foo')
+        const p2 = p1.then(data => (data + '').repeat(2))
+        const p3 = p2.then(data => (data + '').toUpperCase()).resolve('foo')
+
+        expect(p1.state).toBe(TPromiseState.PENDING)
+        expect(p2.state).toBe(TPromiseState.PENDING)
+        expect(p3.state).toBe(TPromiseState.PENDING)
 
         const v1 = await(p1)
         const v2 = await(p2)
@@ -187,11 +191,38 @@ describe('InsideOutPromise', () => {
         expect(p2).toBeInstanceOf(Promise)
         expect(p3).toBeInstanceOf(Promise)
         expect(v1).toBe('foo')
-        expect(v2).toBe('foo')
-        expect(v3).toBe('foo')
+        expect(v2).toBe('foofoo')
+        expect(v3).toBe('FOOFOO')
+
+        expect(p1.state).toBe(TPromiseState.FULFILLED)
+        expect(p2.state).toBe(TPromiseState.FULFILLED)
+        expect(p3.state).toBe(TPromiseState.FULFILLED)
+
+        expect(p1.result).toBe('foo')
+        expect(p2.result).toBe('foofoo')
+        expect(p3.result).toBe('FOOFOO')
       })
     })
 
+    it('inherits status from resolved', async() => {
+      const p1 = new InsideOutPromise()
+
+      expect(p1.state).toBe(TPromiseState.PENDING)
+
+      const data1 = await p1.resolve('foo')
+
+      const p2 = p1.then(data => (data + '').repeat(2))
+
+      expect(p1.state).toBe(TPromiseState.FULFILLED)
+      expect(p2.state).toBe(TPromiseState.FULFILLED)
+
+      const data2 = await p2
+
+      expect(data1).toBe('foo')
+      expect(data2).toBe('foofoo')
+      expect(p1.value).toBe('foo')
+      expect(p2.value).toBe('foofoo')
+    })
   })
   describe('static', () => {
     it('Promise refs to the native Promise by default', () => {
