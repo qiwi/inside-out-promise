@@ -7,7 +7,7 @@ import {
   TPromiseFactoryOpts,
   TNormalizedPromiseFactoryOpts,
 } from './interface'
-import {noop, alias} from './util'
+import {noop, setProto} from './util'
 
 export * from './interface'
 
@@ -27,58 +27,85 @@ Object.defineProperty(factory, 'Promise', {
 
 export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TValue, TReason> {
 
-  promise: IPromise
-  resolve: (value: TValue) => IPromise
-  reject: (reason: TReason) => IPromise
   state: TPromiseState = TPromiseState.PENDING
-  // @ts-ignore it's a getter
-  status: TPromiseState
   result: any
-  value: any
+
+  private _resolve: any
+  private _reject: any
 
   constructor(executor?: TPromiseExecutor<TValue> | TPromiseFactoryOpts, opts?: TPromiseFactoryOpts) {
-    let _resolve: Function
-    let _reject: Function
+    let _resolve: any = undefined
+    let _reject: any = undefined
     const _opts = InsideOutPromise.normalizeOpts(executor, opts)
-    const P: PromiseConstructor = _opts.Promise
+    const _P: PromiseConstructor = _opts.Promise
     const exec: TPromiseExecutor = _opts.executor
-    const chain = (handler: Function) => (data?: any): IPromise => {
-      handler(data)
-      return this.promise
-    }
-
-    this.resolve = chain((data?: any) => _resolve(data))
-    this.reject = chain((err?: any) => _reject(err))
-    this.promise = new P((resolve, reject) => {
+    const fake = new _P((resolve, reject) => {
       _resolve = resolve
       _reject = reject
+
       exec(resolve, reject)
     }).then(v => {
-      this.result = v
-      this.state = TPromiseState.FULFILLED
+      Object.assign(fake, {
+        result: v,
+        state: TPromiseState.FULFILLED,
+      })
+
       return v
     }, e => {
-      this.result = e
-      this.state = TPromiseState.REJECTED
+      Object.assign(fake, {
+        result: e,
+        state: TPromiseState.REJECTED,
+      })
+
       throw e
     })
 
-    alias(this, 'state', 'status')
-    alias(this, 'result', 'value')
+    Object.assign(fake, {
+      state: TPromiseState.PENDING,
+      _P,
+      _resolve,
+      _reject,
+    })
+
+    return setProto(fake, this.constructor.prototype)
   }
 
-  then(onSuccess?: (value: TValue) => any, onReject?: (reason: TReason) => any): IPromise {
-    return this.promise.then(onSuccess, onReject)
+  get promise(): IPromise {
+    // @ts-ignore
+    return this
   }
 
-  catch(onReject: (reason: TReason) => any): IPromise {
-    return this.promise.catch(onReject)
+  get status(): TPromiseState {
+    return this.state
   }
 
-  finally(handler: () => any) {
-    return this.promise.finally
-      ? this.promise.finally(handler)
-      : this.promise.then(handler).catch(handler)
+  get value(): any {
+    return this.result
+  }
+
+  resolve(value: any) {
+    this._resolve(value)
+    return this
+  }
+
+  reject(reason: any) {
+    this._reject(reason)
+    return this
+  }
+
+  then(onSuccess?: (value: TValue) => any, onReject?: (reason: TReason) => any): InsideOutPromise<any, any> {
+    return InsideOutPromise.contextify(this, 'then', onSuccess, onReject)
+  }
+
+  catch(onReject: (reason: TReason) => any): InsideOutPromise<any, any> {
+    return InsideOutPromise.contextify(this, 'catch', onReject)
+  }
+
+  finally(handler: () => any): InsideOutPromise<any, any> {
+    // @ts-ignore
+    return this._P.prototype.finally
+      ? InsideOutPromise.contextify(this, 'finally', handler)
+      : this.then(handler).catch(handler)
   }
 
   isPending(): boolean {
@@ -95,6 +122,10 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
 
   isResolved(): boolean {
     return !this.isPending()
+  }
+
+  private static contextify(ref: any, method: string, ...args: any[]): InsideOutPromise<any, any> {
+    return Object.assign(setProto(ref._P.prototype[method].call(ref, ...args), ref.constructor.prototype), ref)
   }
 
   static normalizeOpts(executor?: TPromiseExecutor | TPromiseFactoryOpts, opts: TPromiseFactoryOpts = {}): TNormalizedPromiseFactoryOpts {

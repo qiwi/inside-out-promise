@@ -3,7 +3,7 @@ import * as Bluebird from 'bluebird'
 import {noop} from '../../main/ts/util'
 
 describe('factory', () => {
-  afterAll(() => InsideOutPromise.Promise = Promise)
+  afterAll(() => factory.Promise = Promise)
 
   it('returns proper instance', () => {
     const p = factory()
@@ -16,12 +16,11 @@ describe('factory', () => {
   it('handles options argument', () => {
     expect(factory.Promise).toBe(Promise)
     const opts = {
-      Promise: Bluebird,
       executor: jest.fn(),
     }
     const p = factory(opts)
 
-    expect(p.promise).toBeInstanceOf(Bluebird)
+    expect(p.promise).toBeInstanceOf(InsideOutPromise)
     expect(opts.executor).toHaveBeenNthCalledWith(1, expect.any(Function), expect.any(Function))
   })
 
@@ -43,6 +42,7 @@ describe('InsideOutPromise', () => {
       const p = new InsideOutPromise()
 
       expect(p).toBeInstanceOf(InsideOutPromise)
+      expect(p).toBeInstanceOf(Promise)
       expect(p.promise).toBeInstanceOf(Promise)
     })
 
@@ -126,6 +126,13 @@ describe('InsideOutPromise', () => {
     })
 
     describe('#finally', () => {
+      const f5y = Promise.prototype.finally
+
+      afterAll(() => {
+        // @ts-ignore
+        Promise.prototype.finally = f5y
+      })
+
       it('uses this.promise.finally if exists', async() => {
         const p = new InsideOutPromise()
         const f = p.finally(() => {
@@ -145,7 +152,7 @@ describe('InsideOutPromise', () => {
       it('relies on then(), catch() otherwise', async() => {
         const p = new InsideOutPromise()
         // @ts-ignore
-        p.promise.finally = null
+        Promise.prototype.finally = null
 
         let foo = 'bar'
 
@@ -160,6 +167,28 @@ describe('InsideOutPromise', () => {
         expect(f).toBeInstanceOf(Promise)
         expect(foo).toBe('baz')
         expect(p.result).toBeNull()
+      })
+    })
+
+    describe('then', () => {
+      it('supports crazy chaining & inheritance', async() => {
+        const p1 = new InsideOutPromise()
+        const p2 = p1.then(data => data)
+        const p3 = p2.then(data => data).resolve('foo')
+
+        const v1 = await(p1)
+        const v2 = await(p2)
+        const v3 = await(p3)
+
+        expect(p1).toBeInstanceOf(InsideOutPromise)
+        expect(p2).toBeInstanceOf(InsideOutPromise)
+        expect(p3).toBeInstanceOf(InsideOutPromise)
+        expect(p1).toBeInstanceOf(Promise)
+        expect(p2).toBeInstanceOf(Promise)
+        expect(p3).toBeInstanceOf(Promise)
+        expect(v1).toBe('foo')
+        expect(v2).toBe('foo')
+        expect(v3).toBe('foo')
       })
     })
 

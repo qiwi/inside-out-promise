@@ -17,6 +17,7 @@ yarn add inside-out-promise
 
 ## Features
 * Chainable `resolve` and `reject` methods
+* Complete inheritance
 * Exposed promise `state` and `result`
 * Configurable Promise implementation
 * Typings for both worlds: Typescript and Flowtype
@@ -60,9 +61,34 @@ factory().resolve('value').then(data => {
   // here's the value: data === 'value'
 })
 
-factory().reject(new Error()).catch(error => {
+factory().catch(error => {
   // the error goes here
-})
+}).reject(new Error())
+```
+
+You're able to combine steps in Java-like style: first build the "[CompletableFuture](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html)" chain and `resolve` it after
+```javascript
+const p = new InsideOutPromise()
+  .then(data => data.repeat(2))
+    .then(data => data.toUpperCase())
+      .then(data => data + 'bar')
+        .resolve('foo')
+
+const res = await p // 'FOOFOObar'
+```
+
+Each step return `InsideOutPromise` instance inherited from `Promise`, `Bluebird` (see [Configuration](./#Configuration) for details), etc, so the `intanceof` check still works.
+```javascript
+const p1 = new InsideOutPromise()
+const p2 = p1.then(data => data)
+
+const v1 = await(p1)
+const v2 = await(p2)
+
+expect(p1).toBeInstanceOf(Promise)
+expect(p2).toBeInstanceOf(Promise)
+expect(p1).toBeInstanceOf(InsideOutPromise)
+expect(p2).toBeInstanceOf(InsideOutPromise)
 ```
 
 #### State
