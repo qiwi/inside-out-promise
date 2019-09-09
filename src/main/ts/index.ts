@@ -1,7 +1,6 @@
 import {
   TInsideOutPromise,
   TPromiseExecutor,
-  IPromise,
   IPromiseFactory,
   TPromiseState,
   TPromiseFactoryOpts,
@@ -70,8 +69,7 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
     return setProto(fake, this.constructor.prototype)
   }
 
-  get promise(): IPromise {
-    // @ts-ignore
+  get promise(): InsideOutPromise<any, any> {
     return this
   }
 
@@ -83,12 +81,12 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
     return this.result
   }
 
-  resolve(value: any) {
+  resolve(value: any): InsideOutPromise<any, any> {
     this._resolve(value)
     return this
   }
 
-  reject(reason: any) {
+  reject(reason: any): InsideOutPromise<any, any> {
     this._reject(reason)
     return this
   }
