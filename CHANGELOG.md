@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/qiwi/inside-out-promise/compare/v1.3.0...v1.3.1) (2019-09-09)
+
+
+### Bug Fixes
+
+* correct value and status resolution for descendant promises ([657289b](https://github.com/qiwi/inside-out-promise/commit/657289b))
+
 # [1.3.0](https://github.com/qiwi/inside-out-promise/compare/v1.2.0...v1.3.0) (2019-09-09)
 
 
