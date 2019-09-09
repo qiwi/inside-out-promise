@@ -49,7 +49,7 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
       state: TPromiseState.PENDING,
       _P,
       _resolve,
-      _reject
+      _reject,
     })
   }
 
