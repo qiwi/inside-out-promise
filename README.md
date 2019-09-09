@@ -47,12 +47,12 @@ const p = new InsideOutPromise()
 ```
 ## API
 #### Resolvers
-Both `executor` args — `resolve` and `reject` — are available as public methods:
+Both `executor` args — `resolve` and `reject` — are available as chainable public methods:
 ```javascript
 const promise = factory()
 
-promise.resolve('foo')
-promise.reject(new Error('bar'))
+promise.resolve('foo')            // This's a promise
+promise.reject(new Error('bar'))  // and this is too
 ```
 
 #### Chains
@@ -77,7 +77,7 @@ const p = new InsideOutPromise()
 const res = await p // 'FOOFOObar'
 ```
 
-Each step return `InsideOutPromise` instance inherited from `Promise`, `Bluebird` (see [Configuration](./#Configuration) for details), etc, so the `intanceof` check still works.
+Each step return `InsideOutPromise` instance inherited from `Promise`, `Bluebird` (see [Configuration](#Configuration) for details), etc, so the `intanceof` check still works.
 ```javascript
 const p1 = new InsideOutPromise()
 const p2 = p1.then(data => data)
@@ -119,7 +119,7 @@ promise.resolve('foo')
 promise.then(data => console.log(data)) // It's `foo`
 ```
 
-## Configuration
+## <a name="Configuration"></a>Configuration
 ```javascript
 import factory from 'inside-out-promise'
 import * as Bluebird from 'bluebird'
