@@ -85,7 +85,9 @@
     "promise status",
     "interted promise",
     "observable promise",
-    "esimorp"
+    "esimorp",
+    "completable future",
+    "CompletableFuture"
   ],
   "release": {
     "branch": "master",
