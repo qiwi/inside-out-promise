@@ -83,6 +83,7 @@ yarn add inside-out-promise</code></pre>
 				</a>
 				<ul>
 					<li>Chainable <code>resolve</code> and <code>reject</code> methods</li>
+					<li>Complete inheritance</li>
 					<li>Exposed promise <code>state</code> and <code>result</code></li>
 					<li>Configurable Promise implementation</li>
 					<li>Typings for both worlds: Typescript and Flowtype</li>
@@ -128,9 +129,28 @@ promise.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in"
   <span class="hljs-comment">// here's the value: data === 'value'</span>
 })
 
-factory().reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()).catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+factory().catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
   <span class="hljs-comment">// the error goes here</span>
-})</code></pre>
+}).reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>())</code></pre>
+				<p>You&#39;re able to combine steps in Java-like style: first build the &quot;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a>&quot; chain and <code>resolve</code> it after</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> InsideOutPromise()
+  .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.repeat(<span class="hljs-number">2</span>))
+    .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.toUpperCase())
+      .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data + <span class="hljs-string">'bar'</span>)
+        .resolve(<span class="hljs-string">'foo'</span>)
+
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> p <span class="hljs-comment">// 'FOOFOObar'</span></code></pre>
+				<p>Each step return <code>InsideOutPromise</code> instance inherited from <code>Promise</code>, <code>Bluebird</code> (see <a href="./#Configuration">Configuration</a> for details), etc, so the <code>intanceof</code> check still works.</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> p1 = <span class="hljs-keyword">new</span> InsideOutPromise()
+<span class="hljs-keyword">const</span> p2 = p1.then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data)
+
+<span class="hljs-keyword">const</span> v1 = <span class="hljs-keyword">await</span>(p1)
+<span class="hljs-keyword">const</span> v2 = <span class="hljs-keyword">await</span>(p2)
+
+expect(p1).toBeInstanceOf(<span class="hljs-built_in">Promise</span>)
+expect(p2).toBeInstanceOf(<span class="hljs-built_in">Promise</span>)
+expect(p1).toBeInstanceOf(InsideOutPromise)
+expect(p2).toBeInstanceOf(InsideOutPromise)</code></pre>
 				<a href="#state" id="state" style="color: inherit; text-decoration: none;">
 					<h4>State</h4>
 				</a>
