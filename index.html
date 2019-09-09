@@ -117,11 +117,11 @@ promise.isResolved()      <span class="hljs-comment">// true</span>
 				<a href="#resolvers" id="resolvers" style="color: inherit; text-decoration: none;">
 					<h4>Resolvers</h4>
 				</a>
-				<p>Both <code>executor</code> args — <code>resolve</code> and <code>reject</code> — are available as public methods:</p>
+				<p>Both <code>executor</code> args — <code>resolve</code> and <code>reject</code> — are available as chainable public methods:</p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> promise = factory()
 
-promise.resolve(<span class="hljs-string">'foo'</span>)
-promise.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'bar'</span>))</code></pre>
+promise.resolve(<span class="hljs-string">'foo'</span>)            <span class="hljs-comment">// This's a promise</span>
+promise.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'bar'</span>))  <span class="hljs-comment">// and this is too</span></code></pre>
 				<a href="#chains" id="chains" style="color: inherit; text-decoration: none;">
 					<h4>Chains</h4>
 				</a>
@@ -140,7 +140,7 @@ factory().catch(<span class="hljs-function"><span class="hljs-params">error</spa
         .resolve(<span class="hljs-string">'foo'</span>)
 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> p <span class="hljs-comment">// 'FOOFOObar'</span></code></pre>
-				<p>Each step return <code>InsideOutPromise</code> instance inherited from <code>Promise</code>, <code>Bluebird</code> (see <a href="./#Configuration">Configuration</a> for details), etc, so the <code>intanceof</code> check still works.</p>
+				<p>Each step return <code>InsideOutPromise</code> instance inherited from <code>Promise</code>, <code>Bluebird</code> (see <a href="#Configuration">Configuration</a> for details), etc, so the <code>intanceof</code> check still works.</p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> p1 = <span class="hljs-keyword">new</span> InsideOutPromise()
 <span class="hljs-keyword">const</span> p2 = p1.then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data)
 
@@ -178,8 +178,8 @@ promise.state // &#39;Fulfilled&#39;</code></pre>
 
 promise.resolve(<span class="hljs-string">'foo'</span>)
 promise.then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data)) <span class="hljs-comment">// It's `foo`</span></code></pre>
-				<a href="#configuration" id="configuration" style="color: inherit; text-decoration: none;">
-					<h2>Configuration</h2>
+				<a href="#a-nameconfigurationaconfiguration" id="a-nameconfigurationaconfiguration" style="color: inherit; text-decoration: none;">
+					<h2><a name="Configuration"></a>Configuration</h2>
 				</a>
 				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> factory <span class="hljs-keyword">from</span> <span class="hljs-string">'inside-out-promise'</span>
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Bluebird <span class="hljs-keyword">from</span> <span class="hljs-string">'bluebird'</span>
