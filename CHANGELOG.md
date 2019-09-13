@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/qiwi/inside-out-promise/compare/v1.3.1...v1.4.0) (2019-09-13)
+
+
+### Features
+
+* assign promise rejection to `reason` field ([2663d11](https://github.com/qiwi/inside-out-promise/commit/2663d11)), closes [#5](https://github.com/qiwi/inside-out-promise/issues/5)
+
 ## [1.3.1](https://github.com/qiwi/inside-out-promise/compare/v1.3.0...v1.3.1) (2019-09-09)
 
 
