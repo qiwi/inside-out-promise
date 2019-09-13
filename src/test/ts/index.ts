@@ -102,7 +102,7 @@ describe('InsideOutPromise', () => {
         expect(p.state).toBe(TPromiseState.REJECTED)
         expect(p.status).toBe(TPromiseState.REJECTED)
         expect(p.result).toBe(reason)
-        expect(p.value).toBe(reason)
+        expect(p.reason).toBe(reason)
         expect(p.isPending()).toBeFalsy()
         expect(p.isRejected()).toBeTruthy()
         expect(p.isFulfilled()).toBeFalsy()

@@ -28,7 +28,8 @@ Object.defineProperty(factory, 'Promise', {
 export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TValue, TReason> {
 
   state: TPromiseState = TPromiseState.PENDING
-  result: any
+  value: any
+  reason: any
 
   private _resolve: any
   private _reject: any
@@ -61,8 +62,12 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
     return this.state
   }
 
-  get value(): any {
-    return this.result
+  get result(): any {
+    return this.isFulfilled()
+      ? this.value
+      : this.isRejected()
+        ? this.reason
+        : undefined
   }
 
   resolve(value: any): InsideOutPromise<any, any> {
@@ -118,14 +123,14 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
     const fake = promise
       .then(v => {
         Object.assign(fake, {
-          result: v,
+          value: v,
           state: TPromiseState.FULFILLED,
         })
 
         return v
       }, e => {
         Object.assign(fake, {
-          result: e,
+          reason: e,
           state: TPromiseState.REJECTED,
         })
 

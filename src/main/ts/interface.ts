@@ -20,6 +20,7 @@ export interface TInsideOutPromise<TValue = any, TReason = any> extends IPromise
 
   result: any,
   value: any,
+  reason: any,
 
   isRejected: () => boolean,
   isFulfilled: () => boolean,
