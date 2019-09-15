@@ -105,7 +105,8 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interface_.tinsideoutpromise.html#ipromise" class="tsd-kind-icon">IPromise</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_interface_.tinsideoutpromise.html#catch" class="tsd-kind-icon">catch</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interface_.tinsideoutpromise.html#___tostringtag" class="tsd-kind-icon">__@to<wbr>String<wbr>Tag</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="_interface_.tinsideoutpromise.html#catch" class="tsd-kind-icon">catch</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="_interface_.tinsideoutpromise.html#finally" class="tsd-kind-icon">finally</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interface_.tinsideoutpromise.html#isfulfilled" class="tsd-kind-icon">is<wbr>Fulfilled</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interface_.tinsideoutpromise.html#ispending" class="tsd-kind-icon">is<wbr>Pending</a></li>
@@ -118,7 +119,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interface_.tinsideoutpromise.html#result" class="tsd-kind-icon">result</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interface_.tinsideoutpromise.html#state" class="tsd-kind-icon">state</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interface_.tinsideoutpromise.html#status" class="tsd-kind-icon">status</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_interface_.tinsideoutpromise.html#then" class="tsd-kind-icon">then</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="_interface_.tinsideoutpromise.html#then" class="tsd-kind-icon">then</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interface_.tinsideoutpromise.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
@@ -137,14 +138,24 @@
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="___tostringtag" class="tsd-anchor"></a>
+					<h3>__@to<wbr>String<wbr>Tag</h3>
+					<div class="tsd-signature tsd-kind-icon">__@to<wbr>String<wbr>Tag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L19">interface.ts:19</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="catch" class="tsd-anchor"></a>
 					<h3>catch</h3>
 					<div class="tsd-signature tsd-kind-icon">catch<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from IPromise.catch</p>
+						<p>Overrides IPromise.catch</p>
 						<ul>
-							<li>Defined in /home/travis/build/qiwi/inside-out-promise/node_modules/@qiwi/substrate-types/typings/index.d.ts:119</li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L17">interface.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -152,7 +163,7 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>onReject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IPromise</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>onReject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReason</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -163,14 +174,14 @@
 												<ul class="tsd-parameters">
 													<li class="tsd-parameter-siganture">
 														<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-															<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReason</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+															<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 														</ul>
 														<ul class="tsd-descriptions">
 															<li class="tsd-description">
 																<h4 class="tsd-parameters-title">Parameters</h4>
 																<ul class="tsd-parameters">
 																	<li>
-																		<h5>reason: <span class="tsd-signature-type">TReason</span></h5>
+																		<h5>reason: <span class="tsd-signature-type">any</span></h5>
 																	</li>
 																</ul>
 																<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -180,7 +191,7 @@
 												</ul>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IPromise</span></h4>
+										<h4 class="tsd-returns-title">Returns <a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReason</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -194,7 +205,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides IPromise.finally</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/b76dab9/src/main/ts/interface.ts#L16">interface.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L18">interface.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -202,7 +213,7 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IPromise</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReason</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -224,7 +235,7 @@
 												</ul>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IPromise</span></h4>
+										<h4 class="tsd-returns-title">Returns <a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReason</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -237,7 +248,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Fulfilled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/b76dab9/src/main/ts/interface.ts#L26">interface.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L29">interface.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -262,7 +273,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Pending<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/b76dab9/src/main/ts/interface.ts#L27">interface.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L30">interface.ts:30</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -287,7 +298,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Rejected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/b76dab9/src/main/ts/interface.ts#L25">interface.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L28">interface.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -312,7 +323,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Resolved<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/b76dab9/src/main/ts/interface.ts#L28">interface.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L31">interface.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -334,10 +345,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="promise" class="tsd-anchor"></a>
 					<h3>promise</h3>
-					<div class="tsd-signature tsd-kind-icon">promise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IPromise</span></div>
+					<div class="tsd-signature tsd-kind-icon">promise<span class="tsd-signature-symbol">:</span> <a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReason</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/b76dab9/src/main/ts/interface.ts#L13">interface.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L13">interface.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -347,7 +358,7 @@
 					<div class="tsd-signature tsd-kind-icon">reason<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/b76dab9/src/main/ts/interface.ts#L23">interface.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L26">interface.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -357,7 +368,7 @@
 					<div class="tsd-signature tsd-kind-icon">reject<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/b76dab9/src/main/ts/interface.ts#L15">interface.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L15">interface.ts:15</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -365,17 +376,17 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReason</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IPromise</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReason</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>reason: <span class="tsd-signature-type">TReason</span></h5>
+												<h5>reason: <span class="tsd-signature-type">any</span></h5>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IPromise</span></h4>
+										<h4 class="tsd-returns-title">Returns <a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReason</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -388,7 +399,7 @@
 					<div class="tsd-signature tsd-kind-icon">resolve<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/b76dab9/src/main/ts/interface.ts#L14">interface.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L14">interface.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -396,7 +407,7 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IPromise</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReason</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -406,7 +417,7 @@
 												<h5>value: <span class="tsd-signature-type">TValue</span></h5>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IPromise</span></h4>
+										<h4 class="tsd-returns-title">Returns <a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReason</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -419,7 +430,7 @@
 					<div class="tsd-signature tsd-kind-icon">result<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/b76dab9/src/main/ts/interface.ts#L21">interface.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L24">interface.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -429,7 +440,7 @@
 					<div class="tsd-signature tsd-kind-icon">state<span class="tsd-signature-symbol">:</span> <a href="../enums/_interface_.tpromisestate.html" class="tsd-signature-type">TPromiseState</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/b76dab9/src/main/ts/interface.ts#L18">interface.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L21">interface.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -439,18 +450,18 @@
 					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <a href="../enums/_interface_.tpromisestate.html" class="tsd-signature-type">TPromiseState</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/b76dab9/src/main/ts/interface.ts#L19">interface.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L22">interface.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="then" class="tsd-anchor"></a>
 					<h3>then</h3>
 					<div class="tsd-signature tsd-kind-icon">then<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from IPromise.then</p>
+						<p>Overrides IPromise.then</p>
 						<ul>
-							<li>Defined in /home/travis/build/qiwi/inside-out-promise/node_modules/@qiwi/substrate-types/typings/index.d.ts:118</li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L16">interface.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -458,7 +469,7 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>onSuccess<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span>, onReject<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IPromise</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>onSuccess<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span>, onReject<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReason</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -471,7 +482,7 @@
 												<h5><span class="tsd-flag ts-flagOptional">Optional</span> onReject: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IPromise</span></h4>
+										<h4 class="tsd-returns-title">Returns <a href="_interface_.tinsideoutpromise.html" class="tsd-signature-type">TInsideOutPromise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TValue</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TReason</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -484,7 +495,7 @@
 					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/b76dab9/src/main/ts/interface.ts#L22">interface.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/220fb70/src/main/ts/interface.ts#L25">interface.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -523,7 +534,10 @@
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_interface_.tinsideoutpromise.html#ipromise" class="tsd-kind-icon">IPromise</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_interface_.tinsideoutpromise.html#___tostringtag" class="tsd-kind-icon">__@to<wbr>String<wbr>Tag</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="_interface_.tinsideoutpromise.html#catch" class="tsd-kind-icon">catch</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
@@ -562,7 +576,7 @@
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_interface_.tinsideoutpromise.html#status" class="tsd-kind-icon">status</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="_interface_.tinsideoutpromise.html#then" class="tsd-kind-icon">then</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
