@@ -9,7 +9,7 @@ export enum TPromiseState {
   REJECTED = 'Rejected',
 }
 
-export interface TInsideOutPromise<TValue = any, TReason = any> extends IPromise<TValue, TReason> {
+export interface TInsideOutPromise<TValue = any, TReason = any> extends IPromise<TValue> {
   promise: IPromise,
   resolve: (value: TValue) => IPromise,
   reject: (reason: TReason) => IPromise,

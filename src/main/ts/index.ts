@@ -111,6 +111,14 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
     return !this.isPending()
   }
 
+  get [Symbol.toStringTag](): string {
+    return this.constructor.name
+  }
+
+  static get [Symbol.toStringTag](): string {
+    return this.name
+  }
+
   private static contextify(ref: any, cxt: any, method?: string, ...args: any[]): InsideOutPromise<any, any> {
     const promise = method
       ? cxt._P.prototype[method].call(ref, ...args)
