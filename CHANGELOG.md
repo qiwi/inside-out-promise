@@ -1,3 +1,11 @@
+## [1.4.1](https://github.com/qiwi/inside-out-promise/compare/v1.4.0...v1.4.1) (2019-09-15)
+
+
+### Bug Fixes
+
+* expose constructor name getters ([ca70b92](https://github.com/qiwi/inside-out-promise/commit/ca70b92))
+* make compatible with Promise<T> ([220fb70](https://github.com/qiwi/inside-out-promise/commit/220fb70)), closes [#12](https://github.com/qiwi/inside-out-promise/issues/12)
+
 # [1.4.0](https://github.com/qiwi/inside-out-promise/compare/v1.3.1...v1.4.0) (2019-09-13)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "inside-out-promise",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Produces extended Promises with attached chainable resolvers",
   "repository": "git@github.com:qiwi/inside-out-promise.git",
   "author": "Anton Golub <mailbox@antongolub.ru>",
