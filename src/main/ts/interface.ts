@@ -9,11 +9,14 @@ export enum TPromiseState {
   REJECTED = 'Rejected',
 }
 
-export interface TInsideOutPromise<TValue = any, TReason = any> extends IPromise<TValue> {
-  promise: IPromise,
-  resolve: (value: TValue) => IPromise,
-  reject: (reason: TReason) => IPromise,
-  finally: (handler: () => any) => IPromise
+export interface TInsideOutPromise<TValue = any, TReason = never> extends IPromise<TValue, TReason> {
+  promise: TInsideOutPromise<TValue, TReason>,
+  resolve: (value: TValue) => TInsideOutPromise<TValue, TReason>,
+  reject: (reason: any) => TInsideOutPromise<TValue, TReason>,
+  then: (onSuccess?: (value: TValue) => any, onReject?: (reason: any) => any) => TInsideOutPromise<TValue, TReason>,
+  catch: (onReject: (reason: any) => any) => TInsideOutPromise<TValue, TReason>,
+  finally: (handler: () => any) => TInsideOutPromise<TValue, TReason>,
+  readonly [Symbol.toStringTag]: string,
 
   state: TPromiseState,
   status: TPromiseState,
@@ -25,7 +28,7 @@ export interface TInsideOutPromise<TValue = any, TReason = any> extends IPromise
   isRejected: () => boolean,
   isFulfilled: () => boolean,
   isPending: () => boolean,
-  isResolved: () => boolean
+  isResolved: () => boolean,
 }
 
 export {
@@ -44,7 +47,7 @@ export type TNormalizedPromiseFactoryOpts = {
 }
 
 export interface IPromiseFactory {
-  (executor?: TPromiseExecutor, opts?: TPromiseFactoryOpts): TInsideOutPromise<any, any>,
-  (opts?: TPromiseFactoryOpts): TInsideOutPromise<any, any>,
+  (executor?: TPromiseExecutor, opts?: TPromiseFactoryOpts): TInsideOutPromise,
+  (opts?: TPromiseFactoryOpts): TInsideOutPromise,
   Promise?: any
 }

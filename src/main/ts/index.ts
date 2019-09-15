@@ -34,7 +34,7 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
   private _resolve: any
   private _reject: any
 
-  constructor(executor?: TPromiseExecutor<TValue> | TPromiseFactoryOpts, opts?: TPromiseFactoryOpts) {
+  constructor(executor?: TPromiseExecutor<TValue, TReason> | TPromiseFactoryOpts, opts?: TPromiseFactoryOpts) {
     let _resolve: any = undefined
     let _reject: any = undefined
     const _opts = InsideOutPromise.normalizeOpts(executor, opts)
@@ -54,7 +54,7 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
     })
   }
 
-  get promise(): InsideOutPromise<any, any> {
+  get promise(): InsideOutPromise<TValue, TReason> {
     return this
   }
 
@@ -70,25 +70,25 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
         : undefined
   }
 
-  resolve(value: any): InsideOutPromise<any, any> {
+  resolve(value: any): InsideOutPromise<TValue, TReason> {
     this._resolve(value)
     return this
   }
 
-  reject(reason: any): InsideOutPromise<any, any> {
+  reject(reason: any): InsideOutPromise<TValue, TReason> {
     this._reject(reason)
     return this
   }
 
-  then(onSuccess?: (value: TValue) => any, onReject?: (reason: TReason) => any): InsideOutPromise<any, any> {
+  then(onSuccess?: (value: TValue) => any, onReject?: (reason: any) => any): InsideOutPromise<TValue, TReason> {
     return InsideOutPromise.contextify(this, this, 'then', onSuccess, onReject)
   }
 
-  catch(onReject: (reason: TReason) => any): InsideOutPromise<any, any> {
+  catch(onReject: (reason: any) => any): InsideOutPromise<TValue, TReason> {
     return InsideOutPromise.contextify(this, this, 'catch', onReject)
   }
 
-  finally(handler: () => any): InsideOutPromise<any, any> {
+  finally(handler: () => any): InsideOutPromise<TValue, TReason> {
     // @ts-ignore
     return this._P.prototype.finally
       ? InsideOutPromise.contextify(this, this, 'finally', handler)
