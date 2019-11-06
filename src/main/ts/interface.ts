@@ -1,9 +1,15 @@
 import {
   IPromise,
   IPromiseConstructor,
-} from '@qiwi/substrate-types/target/es5/IPromise'
+} from '@qiwi/substrate-types'
 
-export type TPromiseExecutor<TValue = any, TReason = any> = (resolve: (value: TValue) => void, reject: (reason: TReason) => void) => void;
+export type TPromiseExecutor<TValue = any, TReason = any> = (resolve: (value: TValue) => void, reject: (reason: TReason) => void) => void
+
+declare module '@qiwi/substrate-types' {
+  interface IPromiseConstructor {
+    readonly [Symbol.species]: any
+  }
+}
 
 export enum TPromiseState {
   PENDING = 'Pending',
