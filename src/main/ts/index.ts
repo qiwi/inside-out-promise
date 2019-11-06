@@ -6,6 +6,7 @@ import {
   TPromiseFactoryOpts,
   TNormalizedPromiseFactoryOpts,
   IPromise,
+  IPromiseConstructor,
 } from './interface'
 import {noop, setProto} from './util'
 
@@ -19,8 +20,8 @@ Object.defineProperty(factory, 'Promise', {
   get() {
     return InsideOutPromise.Promise
   },
-  set(P) {
-    Object.setPrototypeOf(InsideOutPromise.prototype, P.prototype)
+  set(P: IPromiseConstructor) {
+    setProto(InsideOutPromise.prototype, P.prototype)
     InsideOutPromise.Promise = P
   },
 })
@@ -84,11 +85,11 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
     return InsideOutPromise.contextify(this, this, 'then', onSuccess, onReject)
   }
 
-  catch(onReject: (reason: any) => any): InsideOutPromise<TValue, TReason> {
+  catch(onReject?: (reason: any) => any): InsideOutPromise<TValue, TReason> {
     return InsideOutPromise.contextify(this, this, 'catch', onReject)
   }
 
-  finally(handler: () => any): InsideOutPromise<TValue, TReason> {
+  finally(handler?: () => any): InsideOutPromise<TValue, TReason> {
     // @ts-ignore
     return this._P.prototype.finally
       ? InsideOutPromise.contextify(this, this, 'finally', handler)
@@ -115,6 +116,14 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
     return this.constructor.name
   }
 
+  get [Symbol.species](): any {
+    return Promise
+  }
+
+  static get [Symbol.species](): any {
+    return Promise
+  }
+
   static get [Symbol.toStringTag](): string {
     return this.name
   }
@@ -129,14 +138,14 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
 
   private static observe(promise: IPromise<any, any>): IPromise<any, any> {
     const fake = promise
-      .then(v => {
+      .then((v: any) => {
         Object.assign(fake, {
           value: v,
           state: TPromiseState.FULFILLED,
         })
 
         return v
-      }, e => {
+      }, (e: any) => {
         Object.assign(fake, {
           reason: e,
           state: TPromiseState.REJECTED,

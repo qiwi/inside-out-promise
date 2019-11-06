@@ -1,7 +1,9 @@
 import {
   IPromise,
-  TPromiseExecutor,
-} from '@qiwi/substrate-types/lib/es5/IPromise'
+  IPromiseConstructor,
+} from '@qiwi/substrate-types/target/es5/IPromise'
+
+export type TPromiseExecutor<TValue = any, TReason = any> = (resolve: (value: TValue) => void, reject: (reason: TReason) => void) => void;
 
 export enum TPromiseState {
   PENDING = 'Pending',
@@ -15,8 +17,9 @@ export interface TInsideOutPromise<TValue = any, TReason = never> extends IPromi
   reject: (reason: any) => TInsideOutPromise<TValue, TReason>,
   then: (onSuccess?: (value: TValue) => any, onReject?: (reason: any) => any) => TInsideOutPromise<TValue, TReason>,
   catch: (onReject: (reason: any) => any) => TInsideOutPromise<TValue, TReason>,
-  finally: (handler: () => any) => TInsideOutPromise<TValue, TReason>,
+  finally: (handler?: () => any) => TInsideOutPromise<TValue, TReason>,
   readonly [Symbol.toStringTag]: string,
+  readonly [Symbol.species]: any,
 
   state: TPromiseState,
   status: TPromiseState,
@@ -33,7 +36,7 @@ export interface TInsideOutPromise<TValue = any, TReason = never> extends IPromi
 
 export {
   IPromise,
-  TPromiseExecutor,
+  IPromiseConstructor,
 }
 
 export type TPromiseFactoryOpts = {
