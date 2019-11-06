@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@babel/cli@^7.6.4":
+"@babel/cli@^7.7.0":
   version "7.7.0"
   resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.7.0.tgz#8d10c9acb2acb362d7614a9493e1791c69100d89"
   integrity sha512-jECEqAq6Ngf3pOhLSg7od9WKyrIacyh1oNNYtRXNn+ummSHCTXBamGywOAtiae34Vk7zKuQNnLvo2BKTMCoV4A==
@@ -25,7 +25,7 @@
   dependencies:
     "@babel/highlight" "^7.0.0"
 
-"@babel/core@^7.1.0", "@babel/core@^7.5.5", "@babel/core@^7.6.4":
+"@babel/core@^7.1.0", "@babel/core@^7.5.5", "@babel/core@^7.7.0":
   version "7.7.0"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.7.0.tgz#461d2948b1a7113088baf999499bcbd39a7faa3b"
   integrity sha512-Bb1NjZCaiwTQC/ARL+MwDpgocdnwWDCaugvkGt6cxfBzQa8Whv1JybBoUEiBDKl8Ni3H3c7Fykwk7QChUsHRlg==
@@ -285,7 +285,7 @@
     "@babel/helper-create-class-features-plugin" "^7.5.5"
     "@babel/helper-plugin-utils" "^7.0.0"
 
-"@babel/plugin-proposal-class-properties@^7.5.5":
+"@babel/plugin-proposal-class-properties@^7.7.0":
   version "7.7.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-class-properties/-/plugin-proposal-class-properties-7.7.0.tgz#ac54e728ecf81d90e8f4d2a9c05a890457107917"
   integrity sha512-tufDcFA1Vj+eWvwHN+jvMN6QsV5o+vUlytNKrbMiCeDL0F2j92RURzUsUMWE5EJkLyWxjdUslCsMQa9FWth16A==
@@ -293,7 +293,7 @@
     "@babel/helper-create-class-features-plugin" "^7.7.0"
     "@babel/helper-plugin-utils" "^7.0.0"
 
-"@babel/plugin-proposal-decorators@^7.6.0":
+"@babel/plugin-proposal-decorators@^7.7.0":
   version "7.7.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.7.0.tgz#d386a45730a4eb8c03e23a80b6d3dbefd761c9c9"
   integrity sha512-dMCDKmbYFQQTn1+VJjl5hbqlweuHl5oDeMU9B1Q7oAWi0mHxjQQDHdJIK6iW76NE1KJT3zA6dDU3weR1WT5D4A==
@@ -692,7 +692,7 @@
     "@babel/helper-create-regexp-features-plugin" "^7.7.0"
     "@babel/helper-plugin-utils" "^7.0.0"
 
-"@babel/polyfill@^7.6.0":
+"@babel/polyfill@^7.7.0":
   version "7.7.0"
   resolved "https://registry.yarnpkg.com/@babel/polyfill/-/polyfill-7.7.0.tgz#e1066e251e17606ec7908b05617f9b7f8180d8f3"
   integrity sha512-/TS23MVvo34dFmf8mwCisCbWGrfhbiWZSwBo6HkADTBhUa2Q/jWltyY/tpofz/b6/RIhqaqQcquptCirqIhOaQ==
@@ -700,7 +700,7 @@
     core-js "^2.6.5"
     regenerator-runtime "^0.13.2"
 
-"@babel/preset-env@^7.5.5", "@babel/preset-env@^7.6.3":
+"@babel/preset-env@^7.5.5", "@babel/preset-env@^7.7.1":
   version "7.7.1"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.7.1.tgz#04a2ff53552c5885cf1083e291c8dd5490f744bb"
   integrity sha512-/93SWhi3PxcVTDpSqC+Dp4YxUu3qZ4m7I76k0w73wYfn7bGVuRIO4QUz95aJksbS+AD1/mT1Ie7rbkT0wSplaA==
@@ -765,7 +765,7 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-transform-flow-strip-types" "^7.0.0"
 
-"@babel/preset-typescript@^7.6.0":
+"@babel/preset-typescript@^7.7.0":
   version "7.7.0"
   resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.7.0.tgz#5d7682d938160ceaf51c3d4239e9521ef893474c"
   integrity sha512-WZ3qvtAJy8w/i6wqq5PuDnkCUXaLUTHIlJujfGHmHxsT5veAbEdEjl3cC/3nXfyD0bzlWsIiMdUhZgrXjd9QWg==
@@ -773,7 +773,7 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-transform-typescript" "^7.7.0"
 
-"@babel/register@^7.6.2":
+"@babel/register@^7.7.0":
   version "7.7.0"
   resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.7.0.tgz#4e23ecf840296ef79c605baaa5c89e1a2426314b"
   integrity sha512-HV3GJzTvSoyOMWGYn2TAh6uL6g+gqKTgEZ99Q3+X9UURT1VPT/WcU46R61XftIc5rXytcOHZ4Z0doDlsjPomIg==
@@ -784,7 +784,7 @@
     pirates "^4.0.0"
     source-map-support "^0.5.16"
 
-"@babel/runtime@^7.4.2", "@babel/runtime@^7.6.3":
+"@babel/runtime@^7.4.2", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.1":
   version "7.7.1"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.1.tgz#b223497bbfbcbbb38116673904debc71470ca528"
   integrity sha512-SQ0sS7KUJDvgCI2cpZG0nJygO6002oTbhgSuw4WcocsnbxLwL5Q8I3fqbJdyBAc3uFrWZiR2JomseuxSuci3SQ==
