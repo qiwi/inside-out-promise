@@ -1,3 +1,11 @@
+## [1.4.2](https://github.com/qiwi/inside-out-promise/compare/v1.4.1...v1.4.2) (2019-11-06)
+
+
+### Bug Fixes
+
+* typing updates & fixes ([4549aa9](https://github.com/qiwi/inside-out-promise/commit/4549aa99f40e4e20a412b53d2212e7748ea86605))
+* up deps, fix TS 3.7 typings ([376a145](https://github.com/qiwi/inside-out-promise/commit/376a1454a0e696342197b83c6f00ba155a9b990e))
+
 ## [1.4.1](https://github.com/qiwi/inside-out-promise/compare/v1.4.0...v1.4.1) (2019-09-15)
 
 
