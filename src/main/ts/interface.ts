@@ -1,13 +1,18 @@
 import {
   IPromise,
   IPromiseConstructor,
-} from '@qiwi/substrate-types'
+} from '@qiwi/substrate'
 
 export type TPromiseExecutor<TValue = any, TReason = any> = (resolve: (value: TValue) => void, reject: (reason: TReason) => void) => void
 
-declare module '@qiwi/substrate-types' {
-  interface IPromiseConstructor {
+declare module '@qiwi/substrate' {
+  interface IPromiseConstructor<TValue = any, TReason = any> {
     readonly [Symbol.species]: any
+    new (executor: TPromiseExecutor<TValue>): IPromise<TValue, TReason>
+    all: (values: Iterable<IPromise<TValue, TReason>>) => IPromise<TValue[], TReason>
+    race: (values: Iterable<IPromise<TValue, TReason>>) => IPromise<TValue, TReason>
+    reject: (reason?: TReason) => IPromise<TValue, TReason>
+    resolve: (value?: TValue) => IPromise<TValue, TReason>
   }
 }
 
