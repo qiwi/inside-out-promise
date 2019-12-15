@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/qiwi/inside-out-promise/compare/v1.4.2...v1.4.3) (2019-12-15)
+
+
+### Performance Improvements
+
+* **package:** up deps & repack ([1cd25d5](https://github.com/qiwi/inside-out-promise/commit/1cd25d5b696f5dc988892b86df46fd931624d3ee))
+
 ## [1.4.2](https://github.com/qiwi/inside-out-promise/compare/v1.4.1...v1.4.2) (2019-11-06)
 
 
