@@ -74,7 +74,7 @@ describe('InsideOutPromise', () => {
       expect(n2).not.toBe(n1)
     })
 
-    it('#catch captures error and passes through', async () => {
+    it('#catch captures error and passes through', async() => {
       const p = new InsideOutPromise()
       const n1 = p.catch(v => v)
       const n2 = p.catch(v => v.toUpperCase())

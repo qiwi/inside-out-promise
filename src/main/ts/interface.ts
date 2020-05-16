@@ -10,6 +10,8 @@ declare module '@qiwi/substrate' {
     readonly [Symbol.species]: any
     new (executor: TPromiseExecutor<TValue>): IPromise<TValue, TReason>
     all: (values: Iterable<IPromise<TValue, TReason>>) => IPromise<TValue[], TReason>
+    allSettled: (values: Iterable<IPromise<TValue, TReason>>) => IPromise<any>
+    any: (values: Iterable<IPromise<TValue, TReason>>) => IPromise<TValue, TReason>
     race: (values: Iterable<IPromise<TValue, TReason>>) => IPromise<TValue, TReason>
     reject: (reason?: TReason) => IPromise<TValue, TReason>
     resolve: (value?: TValue) => IPromise<TValue, TReason>
