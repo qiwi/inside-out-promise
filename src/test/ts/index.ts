@@ -65,10 +65,26 @@ describe('InsideOutPromise', () => {
 
     it('#catch returns a new promise', () => {
       const p = new InsideOutPromise()
-      const n = p.catch(console.error)
+      const n1 = p.catch(console.error)
+      const n2 = p.catch(console.error)
 
-      expect(n).toBeInstanceOf(Promise)
-      expect(n).not.toBe(p.promise)
+      expect(n1).toBeInstanceOf(Promise)
+      expect(n1).not.toBe(p.promise)
+      expect(n2).not.toBe(p.promise)
+      expect(n2).not.toBe(n1)
+    })
+
+    it('#catch captures error and passes through', async () => {
+      const p = new InsideOutPromise()
+      const n1 = p.catch(v => v)
+      const n2 = p.catch(v => v.toUpperCase())
+
+      setTimeout(() => p.reject('foo'), 100)
+
+      const [r1, r2] = await Promise.all([n1, n2])
+
+      expect(r1).toBe('foo')
+      expect(r2).toBe('FOO')
     })
 
     it('#resolve resolves the promise and returns its ref as a result', async() => {
