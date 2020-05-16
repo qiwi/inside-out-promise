@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/qiwi/inside-out-promise/compare/v1.4.3...v2.0.0) (2020-05-16)
+
+
+### Performance Improvements
+
+* **package:** up deps ([a275af2](https://github.com/qiwi/inside-out-promise/commit/a275af23d9297c773661daad60da063e8d7c3cc9))
+
+
+### BREAKING CHANGES
+
+* **package:** tslib 2.0 requires TS 3.9+
+
 ## [1.4.3](https://github.com/qiwi/inside-out-promise/compare/v1.4.2...v1.4.3) (2019-12-15)
 
 
