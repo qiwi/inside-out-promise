@@ -24,10 +24,10 @@ export enum TPromiseState {
   REJECTED = 'Rejected',
 }
 
-export interface TInsideOutPromise<TValue = any, TReason = never> extends IPromise<TValue, TReason> {
+export interface TInsideOutPromise<TValue = any, TReason = any> extends IPromise<TValue, TReason> {
   promise: TInsideOutPromise<TValue, TReason>,
-  resolve: (value: TValue) => TInsideOutPromise<TValue, TReason>,
-  reject: (reason: any) => TInsideOutPromise<TValue, TReason>,
+  resolve: (value?: TReason) => TInsideOutPromise<TValue, TReason>,
+  reject: (reason?: TReason) => TInsideOutPromise<TValue, TReason>,
   then: (onSuccess?: (value: TValue) => any, onReject?: (reason: any) => any) => TInsideOutPromise<TValue, TReason>,
   catch: (onReject: (reason: any) => any) => TInsideOutPromise<TValue, TReason>,
   finally: (handler?: () => any) => TInsideOutPromise<TValue, TReason>,
