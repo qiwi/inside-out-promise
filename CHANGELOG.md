@@ -1,3 +1,11 @@
+# [2.1.0](https://github.com/qiwi/inside-out-promise/compare/v2.0.0...v2.1.0) (2020-06-19)
+
+
+### Features
+
+* autobind resolve and reject methods ([1085156](https://github.com/qiwi/inside-out-promise/commit/108515675f531d59fa32ab31e71ab14de69abe9d)), closes [#13](https://github.com/qiwi/inside-out-promise/issues/13)
+* let resolve/reject params be optional ([4727d29](https://github.com/qiwi/inside-out-promise/commit/4727d29630db6c20e6ff7856fc2fef892a494e12))
+
 # [2.0.0](https://github.com/qiwi/inside-out-promise/compare/v1.4.3...v2.0.0) (2020-05-16)
 
 
