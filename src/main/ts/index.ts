@@ -1,3 +1,4 @@
+import bind from 'bind-decorator'
 import {
   TInsideOutPromise,
   TPromiseExecutor,
@@ -71,12 +72,14 @@ export class InsideOutPromise<TValue, TReason> implements TInsideOutPromise<TVal
         : undefined
   }
 
-  resolve(value?: any): InsideOutPromise<TValue, TReason> {
+  @bind
+  public resolve(value?: any): InsideOutPromise<TValue, TReason> {
     this._resolve(value)
     return this
   }
 
-  reject(reason?: any): InsideOutPromise<TValue, TReason> {
+  @bind
+  public reject(reason?: any): InsideOutPromise<TValue, TReason> {
     this._reject(reason)
     return this
   }

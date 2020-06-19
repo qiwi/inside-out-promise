@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@qiwi/substrate": "^1.18.28",
+    "bind-decorator": "^1.0.11",
     "tslib": "^2.0.0"
   },
   "devDependencies": {

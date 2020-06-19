@@ -105,6 +105,29 @@ describe('InsideOutPromise', () => {
       expect(resolved).toBe(data)
     })
 
+    it('#resolve/#reject are bound with instance', async() => {
+      const data = 'foo'
+      const {promise: p1, resolve} = factory()
+      const {promise: p2, reject} = factory()
+
+      resolve(data)
+      reject(data)
+
+      await p1
+      expect(p1.status).toBe(TPromiseState.FULFILLED)
+      expect(p1.result).toBe(data)
+      expect(p1.value).toBe(data)
+
+      try {
+        await p2
+      }
+      catch (err) {
+        expect(p2.status).toBe(TPromiseState.REJECTED)
+        expect(p2.result).toBe(data)
+        expect(p2.reason).toBe(data)
+      }
+    })
+
     it('#reject rejects the promise and returns its ref as a result', async done => {
       const reason = new Error('bar')
       const p = new InsideOutPromise()
