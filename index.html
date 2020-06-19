@@ -91,7 +91,7 @@ yarn add inside-out-promise</code></pre>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {factory} <span class="hljs-keyword">from</span> <span class="hljs-string">'inside-out-promise'</span>
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {factory} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;inside-out-promise&#x27;</span>
 
 <span class="hljs-keyword">const</span> promise = factory() <span class="hljs-comment">// produces a promise</span>
 promise.then(<span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> {  <span class="hljs-comment">// standard `thenable` iface</span>
@@ -102,14 +102,14 @@ promise.then(<span class="hljs-function">(<span class="hljs-params">data</span>)
 promise.resolve(data)     <span class="hljs-comment">// internal resolver is exposed as public promise field</span>
 promise.result            <span class="hljs-comment">// data ref</span>
 promise.value             <span class="hljs-comment">// same data ref, result alias</span>
-promise.state             <span class="hljs-comment">// 'Fulfilled'</span>
-promise.status            <span class="hljs-comment">// status alias: 'Fulfilled'</span>
+promise.state             <span class="hljs-comment">// &#x27;Fulfilled&#x27;</span>
+promise.status            <span class="hljs-comment">// status alias: &#x27;Fulfilled&#x27;</span>
 promise.isPending()       <span class="hljs-comment">// false</span>
 promise.isFulfilled()     <span class="hljs-comment">// true</span>
 promise.isResolved()      <span class="hljs-comment">// true</span>
 
 <span class="hljs-comment">// Or the same in OOP style</span>
-<span class="hljs-keyword">import</span> {InsideOutPromise} <span class="hljs-keyword">from</span> <span class="hljs-string">'inside-out-promise'</span>
+<span class="hljs-keyword">import</span> {InsideOutPromise} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;inside-out-promise&#x27;</span>
 <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> InsideOutPromise()</code></pre>
 				<a href="#api" id="api" style="color: inherit; text-decoration: none;">
 					<h2>API</h2>
@@ -120,13 +120,13 @@ promise.isResolved()      <span class="hljs-comment">// true</span>
 				<p>Both <code>executor</code> args — <code>resolve</code> and <code>reject</code> — are available as chainable public methods:</p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> promise = factory()
 
-promise.resolve(<span class="hljs-string">'foo'</span>)            <span class="hljs-comment">// This's a promise</span>
-promise.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'bar'</span>))  <span class="hljs-comment">// and this is too</span></code></pre>
+promise.resolve(<span class="hljs-string">&#x27;foo&#x27;</span>)            <span class="hljs-comment">// This&#x27;s a promise</span>
+promise.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;bar&#x27;</span>))  <span class="hljs-comment">// and this is too</span></code></pre>
 				<a href="#chains" id="chains" style="color: inherit; text-decoration: none;">
 					<h4>Chains</h4>
 				</a>
-				<pre><code class="language-javascript">factory().resolve(<span class="hljs-string">'value'</span>).then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {
-  <span class="hljs-comment">// here's the value: data === 'value'</span>
+				<pre><code class="language-javascript">factory().resolve(<span class="hljs-string">&#x27;value&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {
+  <span class="hljs-comment">// here&#x27;s the value: data === &#x27;value&#x27;</span>
 })
 
 factory().catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
@@ -136,10 +136,10 @@ factory().catch(<span class="hljs-function"><span class="hljs-params">error</spa
 				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> InsideOutPromise()
   .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.repeat(<span class="hljs-number">2</span>))
     .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.toUpperCase())
-      .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data + <span class="hljs-string">'bar'</span>)
-        .resolve(<span class="hljs-string">'foo'</span>)
+      .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data + <span class="hljs-string">&#x27;bar&#x27;</span>)
+        .resolve(<span class="hljs-string">&#x27;foo&#x27;</span>)
 
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> p <span class="hljs-comment">// 'FOOFOObar'</span></code></pre>
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> p <span class="hljs-comment">// &#x27;FOOFOObar&#x27;</span></code></pre>
 				<p>Each step return <code>InsideOutPromise</code> instance inherited from <code>Promise</code>, <code>Bluebird</code> (see <a href="#Configuration">Configuration</a> for details), etc, so the <code>intanceof</code> check still works.</p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> p1 = <span class="hljs-keyword">new</span> InsideOutPromise()
 <span class="hljs-keyword">const</span> p2 = p1.then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data)
@@ -169,20 +169,20 @@ promise.state // &#39;Fulfilled&#39;</code></pre>
 				<a href="#insideoutpromise" id="insideoutpromise" style="color: inherit; text-decoration: none;">
 					<h4>InsideOutPromise</h4>
 				</a>
-				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> InsideOutPromise <span class="hljs-keyword">from</span> <span class="hljs-string">'inside-out-promise'</span>
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> InsideOutPromise <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;inside-out-promise&#x27;</span>
 
 <span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> InsideOutPromise(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
   <span class="hljs-comment">// Legacy executor flow is still supported</span>
   <span class="hljs-comment">// ...</span>
 })
 
-promise.resolve(<span class="hljs-string">'foo'</span>)
-promise.then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data)) <span class="hljs-comment">// It's `foo`</span></code></pre>
+promise.resolve(<span class="hljs-string">&#x27;foo&#x27;</span>)
+promise.then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data)) <span class="hljs-comment">// It&#x27;s `foo`</span></code></pre>
 				<a href="#configuration" id="configuration" style="color: inherit; text-decoration: none;">
 					<h2><a name="Configuration"></a>Configuration</h2>
 				</a>
-				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> factory <span class="hljs-keyword">from</span> <span class="hljs-string">'inside-out-promise'</span>
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Bluebird <span class="hljs-keyword">from</span> <span class="hljs-string">'bluebird'</span>
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> factory <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;inside-out-promise&#x27;</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Bluebird <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;bluebird&#x27;</span>
 
 factory.Promise = Bluebird <span class="hljs-comment">// Native `Promise` by default</span></code></pre>
 				<a href="#refs" id="refs" style="color: inherit; text-decoration: none;">
@@ -201,14 +201,8 @@ factory.Promise = Bluebird <span class="hljs-comment">// Native `Promise` by def
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_index_.html">&quot;index&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_interface_.html">&quot;interface&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_util_.html">&quot;util&quot;</a>
+					<li class=" tsd-kind-module tsd-is-not-exported">
+						<a href="modules/reflection-217.html">&lt;em&gt;<wbr>Module&lt;/em&gt;</a>
 					</li>
 				</ul>
 			</nav>
@@ -223,21 +217,6 @@ factory.Promise = Bluebird <span class="hljs-comment">// Native `Promise` by def
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-			</ul>
 		</div>
 	</div>
 </footer>
