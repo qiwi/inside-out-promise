@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/qiwi/inside-out-promise/compare/v2.1.0...v2.1.1) (2020-10-09)
+
+
+### Performance Improvements
+
+* **package:** up deps ([cae889e](https://github.com/qiwi/inside-out-promise/commit/cae889e4133c05c9b916fa6cbd8c4fb29ab13d6f))
+
 # [2.1.0](https://github.com/qiwi/inside-out-promise/compare/v2.0.0...v2.1.0) (2020-06-19)
 
 
