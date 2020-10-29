@@ -2,12 +2,10 @@
 Produces promises with chainable resolvers and observable state.
 
 [![Build Status](https://travis-ci.com/qiwi/inside-out-promise.svg?branch=master)](https://travis-ci.com/qiwi/inside-out-promise)
-[![npm (tag)](https://img.shields.io/npm/v/inside-out-promise/latest.svg)](https://www.npmjs.com/package/inside-out-promise)
-[![dependencyStatus](https://img.shields.io/david/qiwi/inside-out-promise.svg?maxAge=3600)](https://david-dm.org/qiwi/inside-out-promise)
-[![devDependencyStatus](https://img.shields.io/david/dev/qiwi/inside-out-promise.svg?maxAge=3600)](https://david-dm.org/qiwi/inside-out-promise)
+[![David](https://img.shields.io/david/qiwi/inside-out-promise?label=deps)](https://david-dm.org/qiwi/inside-out-promise)
 [![Maintainability](https://api.codeclimate.com/v1/badges/45b3792789211c6c8f09/maintainability)](https://codeclimate.com/github/qiwi/inside-out-promise/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/45b3792789211c6c8f09/test_coverage)](https://codeclimate.com/github/qiwi/inside-out-promise/test_coverage)
-[![CodeStyle](https://img.shields.io/badge/code%20style-tslint--config--qiwi-brightgreen.svg)](https://github.com/qiwi/tslint-config-qiwi)
+[![npm](https://img.shields.io/npm/v/inside-out-promise)](https://www.npmjs.com/package/inside-out-promise)
 
 ## Install
 ```bash
@@ -15,12 +13,11 @@ npm add inside-out-promise
 yarn add inside-out-promise
 ```
 
-## Features
+## Key features
 * Chainable `resolve` and `reject` methods
-* Complete inheritance
-* Exposed promise `state` and `result`
-* Configurable Promise implementation
-* Typings for both worlds: Typescript and Flowtype
+* Exposed promise `state` and `result` fields
+* Configurable `Promise` implementation
+* **TS** and **Flow** typings out of box
 
 ## Usage
 ```javascript
