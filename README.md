@@ -90,7 +90,7 @@ expect(p2).toBeInstanceOf(InsideOutPromise)
 
 #### State
 Promise [state](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise) field may take values: `Pending`, `Fulfilled` and `Rejected` 
-```javascript:
+```javascript
 const promise = factory()
 promise.state // 'Pending'
 
