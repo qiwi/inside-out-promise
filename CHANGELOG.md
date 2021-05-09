@@ -1,3 +1,10 @@
+## [2.1.3](https://github.com/qiwi/inside-out-promise/compare/v2.1.2...v2.1.3) (2021-05-09)
+
+
+### Bug Fixes
+
+* **pkg:** up dev deps, fix vuls ([32601bb](https://github.com/qiwi/inside-out-promise/commit/32601bbc4d7c56d117d9069cc14fb478fa7ae47f))
+
 ## [2.1.2](https://github.com/qiwi/inside-out-promise/compare/v2.1.1...v2.1.2) (2020-10-30)
 
 
