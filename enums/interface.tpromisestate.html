@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>inside-out-promise | inside-out-promise</title>
+	<title>TPromiseState | inside-out-promise</title>
 	<meta name="description" content="Documentation for inside-out-promise">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">:root {
@@ -2674,7 +2674,7 @@ img {
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="index.html">inside-out-promise</a></strong>
+					<strong><a href="../index.html">inside-out-promise</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -2704,163 +2704,91 @@ img {
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
+		<li class=" tsd-kind-reference tsd-parent-kind-module">
+			<a href="../modules/interface.html#ipromise" class="tsd-kind-icon">IPromise</a>
+		</li>
+		<li class="current tsd-kind-enum tsd-parent-kind-module">
+			<a href="interface.tpromisestate.html" class="tsd-kind-icon">TPromise<wbr>State</a>
+			<ul>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="interface.tpromisestate.html#fulfilled" class="tsd-kind-icon">FULFILLED</a>
+				</li>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="interface.tpromisestate.html#pending" class="tsd-kind-icon">PENDING</a>
+				</li>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="interface.tpromisestate.html#rejected" class="tsd-kind-icon">REJECTED</a>
+				</li>
+			</ul>
+		</li>
+		<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+			<a href="../interfaces/interface.ipromiseconstructor.html" class="tsd-kind-icon">IPromise<wbr>Constructor</a>
+		</li>
+		<li class=" tsd-kind-interface tsd-parent-kind-module">
+			<a href="../interfaces/interface.ipromisefactory.html" class="tsd-kind-icon">IPromise<wbr>Factory</a>
+		</li>
+		<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+			<a href="../interfaces/interface.tinsideoutpromise.html" class="tsd-kind-icon">TInside<wbr>Out<wbr>Promise</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/interface.html#tnormalizedpromisefactoryopts" class="tsd-kind-icon">TNormalized<wbr>Promise<wbr>Factory<wbr>Opts</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+			<a href="../modules/interface.html#tpromiseexecutor" class="tsd-kind-icon">TPromise<wbr>Executor</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/interface.html#tpromisefactoryopts" class="tsd-kind-icon">TPromise<wbr>Factory<wbr>Opts</a>
+		</li>
 	</ul>
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
-		<div class="tsd-panel tsd-typography">
-			<a href="#inside-out-promise" id="inside-out-promise" style="color: inherit; text-decoration: none;">
-				<h1>inside-out-promise</h1>
-			</a>
-			<p>Produces promises with chainable resolvers and observable state.</p>
-			<p><a href="https://travis-ci.com/qiwi/inside-out-promise"><img src="https://travis-ci.com/qiwi/inside-out-promise.svg?branch=master" alt="Build Status"></a>
-				<a href="https://david-dm.org/qiwi/inside-out-promise"><img src="https://img.shields.io/david/qiwi/inside-out-promise?label=deps" alt="David"></a>
-				<a href="https://codeclimate.com/github/qiwi/inside-out-promise/maintainability"><img src="https://api.codeclimate.com/v1/badges/45b3792789211c6c8f09/maintainability" alt="Maintainability"></a>
-				<a href="https://codeclimate.com/github/qiwi/inside-out-promise/test_coverage"><img src="https://api.codeclimate.com/v1/badges/45b3792789211c6c8f09/test_coverage" alt="Test Coverage"></a>
-			<a href="https://www.npmjs.com/package/inside-out-promise"><img src="https://img.shields.io/npm/v/inside-out-promise" alt="npm"></a></p>
-			<a href="#install" id="install" style="color: inherit; text-decoration: none;">
-				<h2>Install</h2>
-			</a>
-			<pre><code class="language-bash"><span style="color: #000000">npm add inside-out-promise</span>
-<span style="color: #000000">yarn add inside-out-promise</span>
-</code></pre>
-			<a href="#key-features" id="key-features" style="color: inherit; text-decoration: none;">
-				<h2>Key features</h2>
-			</a>
-			<ul>
-				<li>Chainable <code>resolve</code> and <code>reject</code> methods</li>
-				<li>Exposed promise <code>state</code> and <code>result</code> fields</li>
-				<li>Configurable <code>Promise</code> implementation</li>
-				<li><strong>TS</strong> and <strong>Flow</strong> typings out of box</li>
-			</ul>
-			<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-				<h2>Usage</h2>
-			</a>
-			<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">factory</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;inside-out-promise&#039;</span>
-
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">promise</span><span style="color: #000000"> = </span><span style="color: #795E26">factory</span><span style="color: #000000">() </span><span style="color: #008000">// produces a promise</span>
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">data</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {  </span><span style="color: #008000">// standard `thenable` iface</span>
-<span style="color: #000000">  </span><span style="color: #795E26">doSomething</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000">)</span>
-<span style="color: #000000">})</span>
-
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">data</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">fetch</span><span style="color: #000000">({...})</span>
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #795E26">resolve</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000">)     </span><span style="color: #008000">// internal resolver is exposed as public promise field</span>
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">            </span><span style="color: #008000">// data ref</span>
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000">             </span><span style="color: #008000">// same data ref, result alias</span>
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #001080">state</span><span style="color: #000000">             </span><span style="color: #008000">// &#039;Fulfilled&#039;</span>
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #001080">status</span><span style="color: #000000">            </span><span style="color: #008000">// status alias: &#039;Fulfilled&#039;</span>
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #795E26">isPending</span><span style="color: #000000">()       </span><span style="color: #008000">// false</span>
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #795E26">isFulfilled</span><span style="color: #000000">()     </span><span style="color: #008000">// true</span>
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #795E26">isResolved</span><span style="color: #000000">()      </span><span style="color: #008000">// true</span>
-
-<span style="color: #008000">// Or the same in OOP style</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">InsideOutPromise</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;inside-out-promise&#039;</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">p</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">InsideOutPromise</span><span style="color: #000000">()</span>
-</code></pre>
-			<a href="#api" id="api" style="color: inherit; text-decoration: none;">
-				<h2>API</h2>
-			</a>
-			<a href="#resolvers" id="resolvers" style="color: inherit; text-decoration: none;">
-				<h4>Resolvers</h4>
-			</a>
-			<p>Both <code>executor</code> args — <code>resolve</code> and <code>reject</code> — are available as chainable public methods:</p>
-			<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">promise</span><span style="color: #000000"> = </span><span style="color: #795E26">factory</span><span style="color: #000000">()</span>
-
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #795E26">resolve</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;foo&#039;</span><span style="color: #000000">)            </span><span style="color: #008000">// This&#039;s a promise</span>
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #795E26">reject</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;bar&#039;</span><span style="color: #000000">))  </span><span style="color: #008000">// and this is too</span>
-</code></pre>
-			<a href="#chains" id="chains" style="color: inherit; text-decoration: none;">
-				<h4>Chains</h4>
-			</a>
-			<pre><code class="language-javascript"><span style="color: #795E26">factory</span><span style="color: #000000">().</span><span style="color: #795E26">resolve</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;value&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #008000">// here&#039;s the value: data === &#039;value&#039;</span>
-<span style="color: #000000">})</span>
-
-<span style="color: #795E26">factory</span><span style="color: #000000">().</span><span style="color: #795E26">catch</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #008000">// the error goes here</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">reject</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">())</span>
-</code></pre>
-			<p>You&#39;re able to combine steps in Java-like style: first build the &quot;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a>&quot; chain and <code>resolve</code> it after</p>
-			<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">p</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">InsideOutPromise</span><span style="color: #000000">()</span>
-<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #795E26">repeat</span><span style="color: #000000">(</span><span style="color: #098658">2</span><span style="color: #000000">))</span>
-<span style="color: #000000">    .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #795E26">toUpperCase</span><span style="color: #000000">())</span>
-<span style="color: #000000">      .</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">data</span><span style="color: #000000"> + </span><span style="color: #A31515">&#039;bar&#039;</span><span style="color: #000000">)</span>
-<span style="color: #000000">        .</span><span style="color: #795E26">resolve</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;foo&#039;</span><span style="color: #000000">)</span>
-
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">res</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">p</span><span style="color: #000000"> </span><span style="color: #008000">// &#039;FOOFOObar&#039;</span>
-</code></pre>
-			<p>Each step return <code>InsideOutPromise</code> instance inherited from <code>Promise</code>, <code>Bluebird</code> (see <a href="#Configuration">Configuration</a> for details), etc, so the <code>intanceof</code> check still works.</p>
-			<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">p1</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">InsideOutPromise</span><span style="color: #000000">()</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">p2</span><span style="color: #000000"> = </span><span style="color: #001080">p1</span><span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">data</span><span style="color: #000000">)</span>
-
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">v1</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000">(</span><span style="color: #001080">p1</span><span style="color: #000000">)</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">v2</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000">(</span><span style="color: #001080">p2</span><span style="color: #000000">)</span>
-
-<span style="color: #795E26">expect</span><span style="color: #000000">(</span><span style="color: #001080">p1</span><span style="color: #000000">).</span><span style="color: #795E26">toBeInstanceOf</span><span style="color: #000000">(</span><span style="color: #267F99">Promise</span><span style="color: #000000">)</span>
-<span style="color: #795E26">expect</span><span style="color: #000000">(</span><span style="color: #001080">p2</span><span style="color: #000000">).</span><span style="color: #795E26">toBeInstanceOf</span><span style="color: #000000">(</span><span style="color: #267F99">Promise</span><span style="color: #000000">)</span>
-<span style="color: #795E26">expect</span><span style="color: #000000">(</span><span style="color: #001080">p1</span><span style="color: #000000">).</span><span style="color: #795E26">toBeInstanceOf</span><span style="color: #000000">(</span><span style="color: #001080">InsideOutPromise</span><span style="color: #000000">)</span>
-<span style="color: #795E26">expect</span><span style="color: #000000">(</span><span style="color: #001080">p2</span><span style="color: #000000">).</span><span style="color: #795E26">toBeInstanceOf</span><span style="color: #000000">(</span><span style="color: #001080">InsideOutPromise</span><span style="color: #000000">)</span>
-</code></pre>
-			<a href="#state" id="state" style="color: inherit; text-decoration: none;">
-				<h4>State</h4>
-			</a>
-			<p>Promise <a href="https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise">state</a> field may take values: <code>Pending</code>, <code>Fulfilled</code> and <code>Rejected</code> </p>
-			<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">promise</span><span style="color: #000000"> = </span><span style="color: #795E26">factory</span><span style="color: #000000">()</span>
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #001080">state</span><span style="color: #000000"> </span><span style="color: #008000">// &#039;Pending&#039;</span>
-
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #795E26">resolve</span><span style="color: #000000">()</span>
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #001080">state</span><span style="color: #000000"> </span><span style="color: #008000">// &#039;Fulfilled&#039;</span>
-</code></pre>
-			<p>There&#39;re also 3 helper methods:</p>
-			<ul>
-				<li><code>isPending()</code></li>
-				<li><code>isRejected()</code></li>
-				<li><code>isFulfilled()</code></li>
-			</ul>
-			<a href="#insideoutpromise" id="insideoutpromise" style="color: inherit; text-decoration: none;">
-				<h4>InsideOutPromise</h4>
-			</a>
-			<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">InsideOutPromise</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;inside-out-promise&#039;</span>
-
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">promise</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">InsideOutPromise</span><span style="color: #000000">((</span><span style="color: #001080">resolve</span><span style="color: #000000">, </span><span style="color: #001080">reject</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #008000">// Legacy executor flow is still supported</span>
-<span style="color: #000000">  </span><span style="color: #008000">// ...</span>
-<span style="color: #000000">})</span>
-
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #795E26">resolve</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;foo&#039;</span><span style="color: #000000">)</span>
-<span style="color: #001080">promise</span><span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000">)) </span><span style="color: #008000">// It&#039;s `foo`</span>
-</code></pre>
-			<a href="#configuration" id="configuration" style="color: inherit; text-decoration: none;">
-				<h2><a name="Configuration"></a>Configuration</h2>
-			</a>
-			<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">factory</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;inside-out-promise&#039;</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #0000FF">*</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">Bluebird</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;bluebird&#039;</span>
-
-<span style="color: #001080">factory</span><span style="color: #000000">.</span><span style="color: #001080">Promise</span><span style="color: #000000"> = </span><span style="color: #001080">Bluebird</span><span style="color: #000000"> </span><span style="color: #008000">// Native `Promise` by default</span>
-</code></pre>
-			<a href="#refs" id="refs" style="color: inherit; text-decoration: none;">
-				<h2>Refs</h2>
-			</a>
-			<ul>
-				<li><a href="https://stackoverflow.com/questions/35398365/js-promises-fulfill-vs-resolve">Fulfill vs resolve</a></li>
-				<li><a href="https://github.com/domenic/promises-unwrapping/blob/master/docs/states-and-fates.md">States and fates</a></li>
-				<li><a href="https://github.com/WebReflection/esimorp">esimorp</a></li>
-			</ul>
-		</div>
-		<div style="position:relative;"><a name="typedoc-main-index" class="tsd-anchor"></a></div>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Modules</h3>
+						<h3>Enumeration members</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-module"><a href="modules/index.html" class="tsd-kind-icon">index</a></li>
-							<li class="tsd-kind-module"><a href="modules/interface.html" class="tsd-kind-icon">interface</a></li>
-							<li class="tsd-kind-module"><a href="modules/util.html" class="tsd-kind-icon">util</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="interface.tpromisestate.html#fulfilled" class="tsd-kind-icon">FULFILLED</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="interface.tpromisestate.html#pending" class="tsd-kind-icon">PENDING</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="interface.tpromisestate.html#rejected" class="tsd-kind-icon">REJECTED</a></li>
 						</ul>
 					</section>
 				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Enumeration members</h2>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="fulfilled" class="tsd-anchor"></a>
+				<h3>FULFILLED</h3>
+				<div class="tsd-signature tsd-kind-icon">FULFILLED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;Fulfilled&quot;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/a1fb6bc/src/main/ts/interface.ts#L23">src/main/ts/interface.ts:23</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="pending" class="tsd-anchor"></a>
+				<h3>PENDING</h3>
+				<div class="tsd-signature tsd-kind-icon">PENDING<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;Pending&quot;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/a1fb6bc/src/main/ts/interface.ts#L22">src/main/ts/interface.ts:22</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="rejected" class="tsd-anchor"></a>
+				<h3>REJECTED</h3>
+				<div class="tsd-signature tsd-kind-icon">REJECTED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;Rejected&quot;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/qiwi/inside-out-promise/blob/a1fb6bc/src/main/ts/interface.ts#L24">src/main/ts/interface.ts:24</a></li>
+					</ul>
+				</aside>
 			</section>
 		</section>
 		<footer>
