@@ -128,7 +128,7 @@ describe('InsideOutPromise', () => {
       }
     })
 
-    it('#reject rejects the promise and returns its ref as a result', async done => {
+    it('#reject rejects the promise and returns its ref as a result', async() => {
       const reason = new Error('bar')
       const p = new InsideOutPromise()
       const n = p.reject(reason)
@@ -146,8 +146,6 @@ describe('InsideOutPromise', () => {
         expect(p.isRejected()).toBeTruthy()
         expect(p.isFulfilled()).toBeFalsy()
         expect(p.isResolved()).toBeTruthy()
-
-        done()
       }
     })
 
