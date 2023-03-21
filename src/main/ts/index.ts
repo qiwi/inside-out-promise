@@ -1,4 +1,3 @@
-import bind from 'bind-decorator'
 import {
   TInsideOutPromise,
   TPromiseExecutor,
@@ -9,7 +8,7 @@ import {
   IPromise,
   IPromiseConstructor,
 } from './interface'
-import {noop, setProto} from './util'
+import {noop, setProto, bind} from './util'
 
 export * from './interface'
 
