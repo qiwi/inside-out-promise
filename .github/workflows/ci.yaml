@@ -4,27 +4,7 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  build:
-    name: build
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install deps
-        run: yarn
-
-      - name: Build
-        run: |
-          yarn build
-
-
   test_push:
-    needs: [build]
     if: github.event_name == 'push'
     runs-on: ubuntu-20.04
     steps:
@@ -38,12 +18,14 @@ jobs:
       - name: Install deps
         run: yarn
 
+      - name: Build
+        run: yarn build
+
       - name: Test
         run: yarn test
 
   test_pr:
     if: github.event_name == 'pull_request'
-    needs: [build]
     strategy:
       matrix:
         os: [ ubuntu-20.04 ]
@@ -60,6 +42,9 @@ jobs:
 
       - name: Install deps
         run: yarn
+
+      - name: Build
+        run: yarn build
 
       - name: Full test
         if: matrix.node-version == '18' && matrix.os == 'ubuntu-20.04'
