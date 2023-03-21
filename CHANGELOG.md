@@ -1,3 +1,11 @@
+## [2.1.5](https://github.com/qiwi/inside-out-promise/compare/v2.1.4...v2.1.5) (2023-03-21)
+
+
+### Performance Improvements
+
+* copy bind-decorator ([#50](https://github.com/qiwi/inside-out-promise/issues/50)) ([2a08bf6](https://github.com/qiwi/inside-out-promise/commit/2a08bf64a1e5d4a31ecdd5df5a75e8c70ec1ac51))
+* update deps ([#51](https://github.com/qiwi/inside-out-promise/issues/51)) ([49265d3](https://github.com/qiwi/inside-out-promise/commit/49265d336ccaf6a6dab94e391bbe436e2b8bad44))
+
 ## [2.1.4](https://github.com/qiwi/inside-out-promise/compare/v2.1.3...v2.1.4) (2021-09-15)
 
 
